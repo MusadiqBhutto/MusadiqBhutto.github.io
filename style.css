@@ -1,30 +1,37 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat:300, 400, 700&display=swap';
-* {
+* 
+{
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 }
-html {
+html 
+{
 	font-size: 10px;
 	font-family: 'Montserrat', sans-serif;
 	scroll-behavior: smooth;
 }
-a {
+
+a 
+{
 	text-decoration: none;
 }
-.container {
+.container 
+{
 	min-height: 100vh;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-img {
+img 
+{
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
 }
-p {
+p 
+{
 	color: black;
 	font-size: 1.4rem;
 	margin-top: 5px;
@@ -32,7 +39,8 @@ p {
 	font-weight: 300;
 	letter-spacing: 0.05rem;
 }
-.section-title {
+.section-title 
+{
 	font-size: 4rem;
 	font-weight: 300;
 	color: black;
@@ -41,11 +49,13 @@ p {
 	letter-spacing: 0.2rem;
 	text-align: center;
 }
-.section-title span {
+.section-title span 
+{
 	color: crimson;
 }
 
-.cta {
+.cta 
+{
 	display: inline-block;
 	padding: 10px 30px;
 	color: white;
@@ -58,21 +68,25 @@ p {
 	transition: 0.3s ease;
 	transition-property: background-color, color;
 }
-.cta:hover {
+.cta:hover 
+{
 	color: white;
 	background-color: crimson;
 }
-.brand h1 {
+.brand h1 
+{
 	font-size: 3rem;
 	text-transform: uppercase;
 	color: white;
 }
-.brand h1 span {
+.brand h1 span 
+{
 	color: crimson;
 }
 
 /* Header section */
-#header {
+#header 
+{
 	position: fixed;
 	z-index: 1000;
 	left: 0;
@@ -80,12 +94,14 @@ p {
 	width: 100vw;
 	height: auto;
 }
-#header .header {
+#header .header 
+{
 	min-height: 8vh;
 	background-color: rgba(31, 30, 30, 0.24);
 	transition: 0.3s ease background-color;
 }
-#header .nav-bar {
+#header .nav-bar 
+{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -94,7 +110,8 @@ p {
 	max-width: 1300px;
 	padding: 0 10px;
 }
-#header .nav-list ul {
+#header .nav-list ul 
+{
 	list-style: none;
 	position: absolute;
 	background-color: rgb(31, 30, 30);
@@ -110,10 +127,12 @@ p {
 	overflow-x: hidden;
 	transition: 0.5s ease left;
 }
-#header .nav-list ul.active {
+#header .nav-list ul.active 
+{
 	left: 0%;
 }
-#header .nav-list ul a {
+#header .nav-list ul a 
+{
 	font-size: 2.5rem;
 	font-weight: 500;
 	letter-spacing: 0.2rem;
@@ -123,7 +142,8 @@ p {
 	padding: 20px;
 	display: block;
 }
-#header .nav-list ul a::after {
+#header .nav-list ul a::after 
+{
 	content: attr(data-after);
 	position: absolute;
 	top: 50%;
@@ -135,14 +155,17 @@ p {
 	z-index: -1;
 	transition: 0.3s ease letter-spacing;
 }
-#header .nav-list ul li:hover a::after {
+#header .nav-list ul li:hover a::after 
+{
 	transform: translate(-50%, -50%) scale(1);
 	letter-spacing: initial;
 }
-#header .nav-list ul li:hover a {
+#header .nav-list ul li:hover a 
+{
 	color: crimson;
 }
-#header .hamburger {
+#header .hamburger 
+{
 	height: 60px;
 	width: 60px;
 	display: inline-block;
@@ -157,7 +180,8 @@ p {
 	transform: scale(0.8);
 	margin-right: 20px;
 }
-#header .hamburger:after {
+#header .hamburger:after 
+{
 	position: absolute;
 	content: '';
 	height: 100%;
@@ -166,7 +190,8 @@ p {
 	border: 3px solid white;
 	animation: hamburger_puls 1s ease infinite;
 }
-#header .hamburger .bar {
+#header .hamburger .bar 
+{
 	height: 2px;
 	width: 30px;
 	position: relative;
@@ -174,7 +199,8 @@ p {
 	z-index: -1;
 }
 #header .hamburger .bar::after,
-#header .hamburger .bar::before {
+#header .hamburger .bar::before 
+{
 	content: '';
 	position: absolute;
 	height: 100%;
@@ -184,7 +210,8 @@ p {
 	transition: 0.3s ease;
 	transition-property: top, bottom;
 }
-#header .hamburger .bar::after {
+#header .hamburger .bar::after 
+{
 	top: 8px;
 }
 #header .hamburger .bar::before {
@@ -277,6 +304,18 @@ p {
 	max-width: 500px;
 	margin: 0 auto;
 }
+
+.service-para
+{ 
+  color: #685206;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-justify: inter-word; 
+}
+
 #services .service-bottom {
 	display: flex;
 	align-items: center;
@@ -382,7 +421,7 @@ p {
 	overflow: hidden;
 	position: relative;
 }
-#projects .project-img:after {
+#projects .project-img::before {
 	content: '';
 	position: absolute;
 	left: 0;
@@ -424,11 +463,24 @@ p {
 #about .col-right p {
 	margin-bottom: 20px;
 }
+
+.about-para
+{ 
+  color: #685206;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  margin: 0 0 24px;
+  text-align: justify;
+  text-justify: inter-word; 
+}
+
+
 #about .col-right .cta {
 	color: black;
 	margin-bottom: 50px;
 	padding: 10px 20px;
-	font-size: 2rem;
+	font-size: 3rem;
 }
 #about .col-left .about-img {
 	height: 100%;
@@ -594,7 +646,7 @@ p {
 		flex-direction: row;
 	}
 	#projects .project-item:nth-child(even) {
-		flex-direction: row-reverse;
+		flex-direction: row;
 	}
 	#projects .project-item {
 		height: 400px;
