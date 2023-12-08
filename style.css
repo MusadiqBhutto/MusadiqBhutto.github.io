@@ -437,6 +437,23 @@ p
 #projects .project-item:hover .project-img img {
 	transform: scale(1.1);
 }
+
+.demo
+{
+	background-color: white;
+	color: black;
+	font-size: 20px;
+	margin-top: 40px;
+	text-align: center;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.demo:hover
+{
+	background-color: black;
+	color: white;
+}
 /* End Projects section */
 
 /* About Section */
