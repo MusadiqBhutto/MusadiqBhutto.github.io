@@ -30,7 +30,7 @@ nav
     justify-content: space-between;
     align-self: center;
     padding: 20px 80px;
-    /* position: fixed; */
+    position: fixed; 
     top: 0;
     z-index: 1;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -105,6 +105,31 @@ nav
     left: 50%;
     transform: translate(-50%,50%);
     text-align: center;
+}
+
+.suggestions 
+{
+    display: none;
+    position: absolute;
+    margin-left: 30px;
+    background-color: #fff;
+    border: 1px solid black;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 407px;
+    
+}
+  
+.suggestion-item 
+{
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+}
+  
+.suggestion-item:hover 
+{
+    background-color: #f0f0f0;
 }
 
 #camera
@@ -182,122 +207,279 @@ li.active
     border-radius: 8px;
 }
 
-.match-card
+.series-heading 
 {
-    width: 100%;
-    height: 450px;
-    border: 1px solid blue;
-}
-
-.match-card-item1
-{   
-    width: 100%;   
-    height: 50px;
-    
-}
-
-.match-card-item1 h1
-{
+    font-family: Arial, sans-serif;
+    font-size: 2em;
+    color: #333;
     text-align: center;
-    color: rgb(11, 177, 121);
-    margin-top: 20px;
+    padding: 20px;
+    width: 70%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.match-card-item2
-{   
-    display: flex;
+.all-serieses
+{
+    width: 90%;
+    height: 1000px;
+    margin: auto;
+    padding-top: 100px;
+    padding-bottom: 0 auto;
+}
+
+table td, table th 
+{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card 
+{
+  border-radius: .5rem;
+}
+
+.all-matches
+{
+    width: 90%; 
+    height: 600px; 
+    display: flex; 
     flex-direction: row;
-    width: 100%;   
-    height: 80px;  
+    justify-content: space-between;
+    margin: 100px auto;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-.match-card-item2 p
-{
-    text-align: center;
-    margin-top: 20px;
-}
-
-.venue
-{
-    color: rgb(177, 11, 80);
-    font-size: 20px;
+.all-matches::-webkit-scrollbar {
+    display: none; /* Hides scrollbar on Chrome, Safari, and Opera */
 }
 
 .match
 {
-    color: rgb(11, 177, 113);
-    font-size: 20px;
+    border: 1px solid rgb(207, 206, 206); 
+    width: 32%; 
+    height: 300Px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(14, 13, 13, 0.1);
+    margin-bottom: 10px;
+    flex: 0 0 auto; /* Ensure each match div takes its natural width */
+    margin-right: 10px; /* Add some space between each match div */
+}
+
+.match-name-div
+{
+    width: 100%; 
+    height: 15%; 
+    text-align: center; 
+}
+
+.match-name
+{   
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #9e0664;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    animation: matchNameAnimation 2s ease-in-out infinite alternate;
+    white-space: pre-wrap;
+}
+  
+@keyframes matchNameAnimation 
+{
+    0% 
+    {
+      transform: scale(1);
+    }
+    100% 
+    {
+      transform: scale(1.05);
+    }
+}
+
+.match-details-div
+{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    height: 20%; 
+    text-align: center; 
+    padding-top: 5px;
+}
+
+.match-venue
+{
+    font-family: 'Verdana', sans-serif;
+    color: #c022ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 15px;
+    font-size: 18px;
     font-weight: bold;
 }
 
-.toss
+.match-date
 {
-    color: rgb(177, 11, 33);
-    font-size: 20px;
+    font-family: 'Verdana', sans-serif;
+    color: black;
+    letter-spacing: 1px;
+    margin-right: 15px;
+    font-weight: bold;
+    font-weight: bold;
 }
 
-.match-card-item3, .match-card-item4
-{   
-    display: flex;
-    flex-direction: row;
-    width: 100%;   
-    height: 100px;  
-}
-
-.team-1-img, .team-2-img
-{   
-   justify-content: center;
-   margin-top: 23px;
-   margin-left: 20px;
-}
-
-.team-1-name, .team-2-name
+.live-label 
 {
-   justify-content: center;
-   margin-top: 34px;
-   margin-left: 20px;
-   color: rgb(129, 30, 196);
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
 }
-
-.team-1-score, .team-2-score
+  
+.live-label::after 
 {
-   justify-content: center;
-   margin-top: 34px;
-   margin-left: 20px;
-   color: rgb(129, 30, 196);
-}
-
-.team-1-over, .team-2-over
-{
-   justify-content: center;
-   margin-top: 34px;
-   margin-left: 20px;
-   color: rgb(129, 30, 196);
-}
-
-
-
-
-
-
-
-
-.matches-cards .item
-{
-    width: 360px;
-    height: 360px;
-    float: left;
-    margin-bottom: 20px;
-    margin-right: 20px;
-}
-
-.matches-cards img
-{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 25px;
     width: 100%;
-    height: 100%;
-    float: left;
-    border-radius: 8px;
+    height: 2px;
+    background-color: red;
+    animation: underline 2s infinite;
 }
+  
+@keyframes underline {
+0% {
+    width: 0;
+}
+50% {
+    width: 100%;
+}
+100% {
+    width: 0;
+}
+}
+  
+
+.team-1-div, .team-2-div
+{
+    display: flex; 
+    justify-content: space-around; 
+    width: 100%; 
+    height: 20%; 
+    text-align: center;
+}
+
+.team-2-div
+{
+    margin-top: 10px;
+}
+
+.team-1-image-div, .team-2-image-div
+{
+    width: 20%;
+    justify-content: center;
+} 
+
+.team-1-name-div, .team-2-name-div
+{
+    width: 40%;
+    justify-content: center;
+}
+
+.team-1-score-div, .team-2-score-div
+{
+    width: 20%;
+    justify-content: center;
+}
+
+.team-1-overs-div, .team-2-overs-div
+{
+    width: 20%;
+    justify-content: center;
+}
+
+.team-1-name, .team-1-score, .team-2-name, .team-2-score
+{
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 14px;
+}
+
+.team-1-overs, .team-2-overs
+{
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0bcc6c;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 14px; 
+}
+
+.match-result-div
+{
+    height: 25%; 
+}
+
+.match-result
+{
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #4c53af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    white-space: pre-wrap;
+}
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .member
 {

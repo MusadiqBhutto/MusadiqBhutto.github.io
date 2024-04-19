@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <title>Photopix</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Live Cricket Scores</title>
 </head>
 
 <body>
@@ -15,13 +18,13 @@
     <header>
         <nav>
             <div class="logo">
-                Photo<span>pi</span>X
+                Live<span> Cricket </span>Scores
             </div>
             <div class="menu">
                 <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Gallery</a>
+                <a href="#">Live</a>
                 <a href="#">Contact</a>
+                <a href="#">About</a>
             </div>
             <div class="icon">
                 <i class="fa fa-search"></i>
@@ -29,162 +32,91 @@
             </div>
         </nav>
         <section class="h-text">
-            <h1 data-aos="fade-up">Stay in the Game<br> Real-Time Updates for Every Cricket Fanatic!</h1>
-            <input type="text" name="" placeholder="Search here...">
-            <button><i class="fa fa-search"></i></button>
+            <h1 class="main-heading" data-aos="fade-up">Stay in the Game<br> Real-Time Updates for Every Cricket Fanatic!</h1>
+            <input type="text" id="searchInput" placeholder="Search here...">
+            <button onclick="search()"><i class="fa fa-search"></i></button>
+            <div id="suggestions" class="suggestions"></div>   
         </section>
-     </header>
+    </header>
 
-     <section class="filter-gallery">
-        <div class="portfolio-menu">
-            <ul>
-                <li class="active" data-filter="*">All</li>
-                <li data-filter=".nature">Live</li>
-                <li data-filter=".fashion">T20</li>
-                <li data-filter=".wedding">ODI</li>
-            </ul>
-        </div>
+    <h2 class="series-heading">Current Series</h2>
 
-       
-        
-        <div class="match-card" data-aos="flip-left" data-aos-offset="100" data-aos-delay="100">
-            <div class="match-card-item1">
-                <h1>HBL PSL 2024</h1>
-            </div>
-            <div class="match-card-item2"  data-aos="flip-left" data-aos-offset="100" data-aos-delay="100">
-                <div style="width: 20%;"><p class="venue"></p></div>
-                <div style="width: 50%;"><p class="match"></p></div>
-                <div style="width: 30%;"><p class="toss"></p></div>
-            </div>
-            <div class="match-card-item3"  data-aos="flip-left" data-aos-offset="100" data-aos-delay="100">
-                <div style=" width: 50%; display: flex; flex-direction: row;">
-                    <div><img class="team-1-img" src="" alt=""></div>
-                    <div><h1 class="team-1-name"></h1></div>
-                </div>
-                <div style=" width: 50%; display: flex; flex-direction: row;">
-                    <div><h1 style=" margin-right: 100px;" class="team-1-score"></h1></div>
-                    <div><h1  class="team-1-over"></h1></div>
-                </div>
-            </div>
-            <div class="match-card-item4"  data-aos="flip-left" data-aos-offset="100" data-aos-delay="100">
-                <div style=" width: 50%; display: flex; flex-direction: row;">
-                    <div><img class="team-2-img" src="" alt=""></div>
-                    <div><h1 class="team-2-name"></h1></div>
-                </div>
-                <div style=" width: 50%; display: flex; flex-direction: row;">
-                    <div><h1 style=" margin-right: 100px;" class="team-2-score"></h1></div>
-                    <div><h1 class="team-2-over"></h1></div>
-                </div>
-            </div>
-            <div class="match-card-item4" style="display: flex; justify-content: center;">
-               <h1 style="align-self: center; justify-content: center;" class="result"></h1>
-            </div>
-            
-        </div>    
-     
+    <section
+        style="background-image: url('https://mdbootstrap.com/img/Photos/new-templates/tables/img3.jpg'); width: 90%; height: 1400px; margin: 100px auto; ">
+        <section class="all-serieses">
+            <section class="intro">
+                    <div class="mask d-flex align-items-center h-100"
+                        style="background-color: rgba(25, 185, 234, .25);">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover mb-0" id="apiTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Series</th>
+                                                            <th scope="col">Start Date</th>
+                                                            <th scope="col">End Date</th>
+                                                            <th scope="col">ODI</th>
+                                                            <th scope="col">T20</th>
+                                                            <th scope="col">Test</th>
+                                                            <th scope="col">Matches</th>
+                                                            <th scope="col">See More</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+        </section>
     </section>
 
-     <section class="member">
-        <div class="member-info" data-aos="zoom-in-up" data-aos-offset="100" data-aos-delay="100">
-            <h1>Our <span>Information</span></h1>
-            <p>What our member says</p>
-        </div>
-        <div class="member-card" data-aos="zoom-in-down" data-aos-offset="100" data-aos-delay="200">
-            <img src="assets/images/member.png" alt="">
-            <p>
-                Quasi mollitia minima culpa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta ratione iure magni nihil reprehenderit, reiciendis eius odit praesentium totam dolorem nam, enim numquam sapiente vel dolorum facilis suscipit non quo!
-            </p>
-            <h2>Bhutto Bhutto</h2>
-            <img src="assets/images/icon1.png" width="100">
-            <img src="assets/images/icon2.png" width="100">
-            <img src="assets/images/icon3.png" width="100">
-            <img src="assets/images/icon4.png" width="100">
-        </div>
+    <h2 class="series-heading">Current Matches</h2>
 
-        <div class="m-images" data-aos="zoom-in" data-aos-offset="100" data-aos-delay="300">
-            <img src="assets/images/s1.jpg">
-            <img src="assets/images/s2.jpg">
-            <img src="assets/images/s3.jpg">
-            <img src="assets/images/s4.jpg">
-            <img src="assets/images/s5.jpg">
-            <img src="assets/images/s6.jpg">
-        </div>
-     </section>
-
-     <footer>
-        <div class="newsletter">
-            <div data-aos="fade-up" data-aos-offset="200">
-                <h2>Subscribe our newsletter</h2>
-                <p>We are team of non-cynics who truly care for our work!</p>
+    <section class="all-matches">
+        <div class="match"> 
+            <div class="match-name-div">
+                <h6 class="match-name">Qatar vs Hong Kong, 1st T20I</h6>
             </div>
-            <div class="ntext" data-aos="fade-up-right" data-aos-offset="200">
-                <label>
-                    <input type="text" name="" id="" placeholder="Enter your email">
-                    <button>Subscribe</button>
-                </label>
+            <div class="match-details-div">
+                <h6 class="match-venue">DOHA</h6>
+                <h6 class="match-date">15th Feb</h6>
+            </div>
+            <div class="team-1-div">
+                <div class="team-1-image-div"><img class="team-1-image" src="https://g.cricapi.com/iapi/14-637877085850526611.webp?w=48" alt=""></div>
+                <div class="team-1-name-div"><h5 class="team-1-name">Pakistan</h5></div>
+                <div class="team-1-score-div"><h6 class="team-1-score">240-7</h6></div>
+                <div class="team-1-overs-div"><h6 class="team-1-overs">(45.5)</h6></div>
+            </div>
+            <div class="team-2-div">
+                <div class="team-2-image-div"><img class="team-2-image" src="https://g.cricapi.com/iapi/14-637877085850526611.webp?w=48" alt=""></div>
+                <div class="team-2-name-div"><h5 class="team-2-name">Pakistan</h5></div>
+                <div class="team-2-score-div"><h6 class="team-2-score">240-7</h6></div>
+                <div class="team-2-overs-div"><h6 class="team-2-overs">(45.5)</h6></div>
+            </div>
+            <div class="match-result-div">
+                <h5 class="match-result">Pakistan won by 5 runs</h5>
             </div>
         </div>
-        <div class="f-contact" data-aos="zoom-in-up" data-aos-offset="200">
-            <div>
-                <h1>Information</h1>
-                <p>Lorem ipsum dolor, sit ametbeatae maxime  sed eaque? , sed doloribus?</p>
-                <i class="fa fa-whatsapp"></i>
-                <i class="fa fa-instagram"></i>
-                <i class="fa fa-telegram"></i>
-                <i class="fa fa-twitter"></i>
-            </div>
-            <div>
-                <h1>Useful links</h1>
-                <p>About</p>
-                <p>Gallery</p>
-                <p>Blog posts</p>
-                <p>Pricing plans</p>
-            </div>
-            <div>
-                <h1>Details</h1>
-                <p>Photographers</p>
-                <p>Gallery</p>
-                <p>About</p>
-                <p>Pricing plans</p>
-            </div>
-            <div>
-                <h1>Help & Support</h1>
-                <p>Privacy policy</p>
-                <p>Terms & conditions</p>
-                <p>Technical support</p>
-                <p>Customer care</p>
-            </div>  
-        </div>
-     </footer>
-
-     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-     
-
-     <script>
-        AOS.init();
-     </script>
-
-     <script type="text/javascript">
-        $('.portfolio-item').isotope
-        ({
-        itemSelector: '.item',
-        layoutMode: 'fitRows'
-        });
-        
-        $('.portfolio-menu ul li').click(function(){    
-        $('.portfolio-menu ul li').removeClass('active');
-        $(this).addClass('active');
-       
-        var selector = $(this).attr('data-filter');
-        $('.portfolio-item').isotope({ filter:selector });
-        return false;
-        });  
-     </script>
-
-< <script src="assets/js/script.js""></script>
-
-
+    </section>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script> AOS.init(); </script>
+    <script type="module" src="assets/js/script.js"></script>
+    <script type="module" src="assets/js/series.js"></script>
+    <script type="module" src="assets/js/matches.js"></script>
+    <script type="module" src="assets/js/search.js"></script>
 </body>
 </html>
