@@ -6,7 +6,7 @@ const allMatchesSection = document.querySelector('.all-matches');
 function fetchMatchesData() 
 { 
     const randomApiKey = getRandomApiKey();
-    const url = `https://api.cricapi.com/v1/currentMatches?apikey=${randomApiKey}&offset=0`;
+    const url = `https://api.cricapi.com/v1/matches?apikey=${randomApiKey}&offset=0`;
 
     fetch(url).then(response => response.json()).then(data => 
     {
