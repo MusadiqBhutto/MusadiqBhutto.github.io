@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Server Queue Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 15px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .result-table {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .result-table th, .result-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .result-table th {
+            background-color: #007BFF;
+            color: white;
+        }
+        #chartContainer {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        #summary {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #summary p {
+            margin: 10px 0;
+            
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Single Server Queue Simulation</h1>
+    <label for="interArrival">Enter random numbers for Inter-arrival times (comma-separated):</label>
+    <input type="text" id="interArrival" placeholder="e.g. 61,55,1,33,19,25,79,93,18,49,92">
+
+    <label for="serviceTime">Enter random numbers for Service times (comma-separated):</label>
+    <input type="text" id="serviceTime" placeholder="e.g. 28,1,61,85,67,53,62,79,66,63,33,77">
+
+    <div id="error" class="error"></div>
+
+    <button onclick="runSimulation()">Run Simulation</button>
+
+    <table class="result-table" id="results"></table>
+    
+    <div id="chartContainer">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div id="summary"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    function runSimulation() {
+        const interArrivalInput = document.getElementById('interArrival').value.trim();
+        const serviceTimeInput = document.getElementById('serviceTime').value.trim();
+        const interArrivalArr = interArrivalInput.split(',').map(num => parseInt(num.trim()));
+        const serviceTimeArr = serviceTimeInput.split(',').map(num => parseInt(num.trim()));
+
+        const errorDiv = document.getElementById('error');
+        const resultTable = document.getElementById('results');
+        resultTable.innerHTML = '';
+
+        // Input validation
+        if (!interArrivalInput || !serviceTimeInput) {
+            errorDiv.textContent = "Both fields must be filled!";
+            return;
+        }
+
+        if (interArrivalArr.includes(NaN) || serviceTimeArr.includes(NaN)) {
+            errorDiv.textContent = "Please ensure all entries are numbers!";
+            return;
+        }
+
+        if (interArrivalArr.length !== serviceTimeArr.length - 1) {
+            errorDiv.textContent = "Inter-arrival times should be one less than service times!";
+            return;
+        }
+
+        // Clear error message
+        errorDiv.textContent = '';
+
+        // Perform the simulation
+        let currentTime = 0;
+        let arrivalTime = 0;
+        let startTime = 0;
+        let completionTime = 0;
+        let waitingTime = 0;
+        let idleTime = 0;
+        let timeInSystem = 0;
+
+        const customers = [];
+        const serviceTimes = [];
+        const waitingTimes = [];
+		const queueLengths = [];
+
+        let tableHTML = `
+            <tr>
+                <th>Customer</th>
+                <th>Inter-Arrival Time (Min)</th>
+                <th>Clock Time</th>
+                <th>Service Time (Min)</th>
+                <th>Service Begins (Min)</th>
+                <th>Waiting Time (Min)</th>
+                <th>Service Ends (Min)</th>
+                <th>Time in System (Min)</th>
+                <th>Idle Time (Min)</th>
+                <th>Queue Length</th>
+            </tr>`;
+
+        for (let i = 0; i < serviceTimeArr.length; i++) {
+            const interArrivalTime = i === 0 ? 0 : mapInterArrival(interArrivalArr[i - 1]);
+            const serviceTime = mapService(serviceTimeArr[i]);
+
+            arrivalTime = i === 0 ? 0 : currentTime + interArrivalTime;
+            startTime = Math.max(arrivalTime, completionTime);
+            waitingTime = startTime - arrivalTime;
+            completionTime = startTime + serviceTime;
+            timeInSystem = completionTime - arrivalTime;
+            idleTime = i === 0 ? 0 : startTime - completionTime;
+
+            // Calculate Queue Length
+            let queueLength = 0;
+            for (let j = 0; j < customers.length; j++) {
+                if (customers[j].completionTime > arrivalTime) {
+                    queueLength++;
+                }
+            }
+
+            // Store customer data
+            customers.push({ arrivalTime, completionTime });
+            serviceTimes.push(serviceTime);
+            waitingTimes.push(waitingTime);
+			queueLengths.push(queueLength);
+
+            tableHTML += `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td>${i === 0 ? '-' : interArrivalTime}</td>
+                    <td>${arrivalTime}</td>
+                    <td>${serviceTime}</td>
+                    <td>${startTime}</td>
+                    <td>${waitingTime}</td>
+                    <td>${completionTime}</td>
+                    <td>${timeInSystem}</td>
+                    <td>${idleTime > 0 ? idleTime : 0}</td>
+                    <td>${queueLength}</td>
+                </tr>`;
+            currentTime = arrivalTime;
+        }
+
+        resultTable.innerHTML = tableHTML;
+
+        
+		// Calling displayChart Function
+        displayChart(serviceTimes, waitingTimes);
+        
+		// Calling displaySummary Function
+		displaySummary(customers.length, waitingTimes.reduce((a, b) => a + b, 0) / customers.length, 
+            serviceTimes.reduce((c, d, i) => c + d + waitingTimes[i], 0),
+            Math.max(...queueLengths));
+    }
+
+    function mapInterArrival(randomNumber) {
+        if (randomNumber >= 1 && randomNumber <= 20) return 1;
+        else if (randomNumber >= 21 && randomNumber <= 50) return 2;
+        else if (randomNumber >= 51 && randomNumber <= 80) return 3;
+        else if (randomNumber >= 81 && randomNumber <= 90) return 4;
+        else return 5;
+    }
+
+    function mapService(randomNumber) {
+        if (randomNumber >= 1 && randomNumber <= 20) return 3;
+        else if (randomNumber >= 21 && randomNumber <= 70) return 5;
+        else return 7;
+    }
+    
+	
+	// Function to display Graph
+    function displayChart(serviceTimes, waitingTimes) {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Array.from({ length: serviceTimes.length }, (_, i) => `Customer ${i + 1}`),
+            datasets: [
+                {
+                    label: 'Service Time (Min)',
+                    data: serviceTimes,
+                    backgroundColor: 'green'
+                },
+                {
+                    label: 'Waiting Time (Min)',
+                    data: waitingTimes,
+                    backgroundColor: 'red'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Service and Waiting Times per Customer',
+                    font: {
+                        size: 24  // Set the font size here
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        minRotation: 90,
+                        maxRotation: 90
+                    }
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+    // Function to Display Summary 
+    function displaySummary(totalCustomers, avgWaitingTime, totalTimeInSystem, maxQueueLength) 
+	{
+    const summaryDiv = document.getElementById('summary');
+    summaryDiv.innerHTML = `
+        <h1 style="color: blue;">Summary</h1>
+        <table border="1" style="width: 100%; text-align: left; border-collapse: collapse;">
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Total Customers Served</td>
+                <td>${totalCustomers}</td>
+            </tr>
+            <tr>
+                <td>Average Waiting Time (Min)</td>
+                <td>${avgWaitingTime}</td>
+            </tr>
+            <tr>
+                <td>Total Time in System (Min)</td>
+                <td>${totalTimeInSystem}</td>
+            </tr>
+            <tr>
+                <td>Maximum Queue Length</td>
+                <td>${maxQueueLength}</td>
+            </tr>
+        </table>
+    `;
+    }
+
+</script>
+
+</body>
+</html>
