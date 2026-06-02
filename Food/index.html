@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <!-- ============================================================
+       JUMANI FOOD PRODUCTS | Premium Pakistani Food Brand
+       Website: Single-file, Production-Ready, 2026 Design
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jumani Food Products – Authentic Pakistani pickles, spices, chutneys & traditional food products crafted with love in Karachi. Order now for delivery across Pakistan." />
+  <meta name="keywords" content="Jumani Food Products, Pakistani pickles, achar, spices, chutney, Karachi food, halal food, traditional Pakistani food" />
+  <meta name="author" content="Jumani Food Products" />
+  <meta property="og:title" content="Jumani Food Products – Taste the Tradition" />
+  <meta property="og:description" content="Authentic Pakistani pickles, spices & condiments made with traditional recipes. Delivered fresh across Pakistan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1200" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Jumani Food Products – Taste the Tradition</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <script>
+    // Tailwind custom config
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50:  '#fff8ed',
+              100: '#ffefd4',
+              200: '#ffdba8',
+              300: '#ffc170',
+              400: '#ff9d34',
+              500: '#f97f0e',
+              600: '#ea6404',
+              700: '#c24907',
+              800: '#9a3a0e',
+              900: '#7c310f',
+              950: '#431605',
+            },
+            earth: {
+              50:  '#faf6f0',
+              100: '#f0e6d3',
+              200: '#decca3',
+              300: '#c8aa72',
+              400: '#b68e50',
+              500: '#a67840',
+              600: '#8e6236',
+              700: '#734d2e',
+              800: '#5f402b',
+              900: '#503727',
+              950: '#2c1b12',
+            },
+            spice: {
+              red:    '#c0392b',
+              turmeric: '#e8a000',
+              green:  '#2d6a4f',
+              mustard: '#d4a017',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- ============================================================
+       CUSTOM STYLES
+       ============================================================ -->
+  <style>
+    /* ---- Base ---- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand-orange: #f97f0e;
+      --brand-dark:   #1a0a00;
+      --brand-cream:  #faf6f0;
+      --brand-earth:  #8e6236;
+      --glass-bg:     rgba(255,255,255,0.08);
+      --glass-border: rgba(255,255,255,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--brand-cream);
+      color: #1a0a00;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* Dark mode */
+    .dark body, body.dark {
+      background: #0f0700;
+      color: #f0e6d3;
+    }
+    .dark { background: #0f0700; color: #f0e6d3; }
+
+    /* ---- Typography ---- */
+    .font-display { font-family: 'Playfair Display', serif; }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+
+    /* ---- Loading Screen ---- */
+    #loading-screen {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, #1a0a00 0%, #431605 50%, #7c310f 100%);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-logo {
+      display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    }
+    .loader-logo img { width: 80px; height: 80px; border-radius: 50%; }
+    .loader-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700;
+      color: #ffc170;
+      letter-spacing: 0.05em;
+    }
+    .loader-bar {
+      width: 200px; height: 3px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%; width: 0;
+      background: linear-gradient(90deg, #ffc170, #f97f0e);
+      border-radius: 99px;
+      animation: loadBar 1.8s ease forwards;
+    }
+    @keyframes loadBar { to { width: 100%; } }
+
+    /* ---- Navbar ---- */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(26,10,0,0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 0.6rem 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffc170;
+      line-height: 1;
+    }
+    .nav-logo-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #c28040;
+    }
+    .nav-link-item {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link-item::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: #f97f0e;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-link-item:hover, .nav-link-item.active { color: #ffc170; }
+    .nav-link-item:hover::after, .nav-link-item.active::after { transform: scaleX(1); }
+
+    /* ---- Hero ---- */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a0a00 0%, #3d1a08 40%, #6b2f10 70%, #a04520 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-bg-shapes {
+      position: absolute; inset: 0;
+      pointer-events: none;
+    }
+    .hero-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.06;
+      background: radial-gradient(circle, #ffc170, transparent 70%);
+      animation: floatCircle linear infinite;
+    }
+    @keyframes floatCircle {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translateY(-30px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+    .spice-pattern {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 20% 50%, rgba(249,127,14,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255,193,112,0.06) 0%, transparent 40%),
+                        radial-gradient(circle at 60% 80%, rgba(192,57,43,0.06) 0%, transparent 40%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(249,127,14,0.15);
+      border: 1px solid rgba(249,127,14,0.3);
+      border-radius: 99px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      color: #ffc170;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .hero-title .accent { color: #ffc170; font-style: italic; }
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+    .btn-hero-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: linear-gradient(135deg, #f97f0e, #c24907);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 2rem;
+      border-radius: 99px;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(249,127,14,0.35);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(249,127,14,0.5);
+      color: #fff;
+    }
+    .btn-hero-outline {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: transparent;
+      color: #fff;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.85rem 2rem;
+      border-radius: 99px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-hero-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
+      color: #fff;
+    }
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ---- Section Styles ---- */
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #f97f0e;
+      margin-bottom: 0.75rem;
+    }
+    .section-tag::before, .section-tag::after {
+      content: ''; display: block;
+      width: 24px; height: 1px;
+      background: #f97f0e;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    /* Light/Dark section bg */
+    .bg-light-cream { background: #faf6f0; }
+    .bg-dark-rich { background: #1a0a00; }
+    .dark .bg-light-cream { background: #120700; }
+    .dark .bg-dark-rich { background: #0f0500; }
+    .dark .section-title { color: #f0e6d3; }
+
+    /* ---- Product Cards ---- */
+    .product-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      cursor: pointer;
+      position: relative;
+    }
+    .dark .product-card { background: #1f0d03; }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(249,127,14,0.2);
+    }
+    .product-card .img-wrap {
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-card .img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .img-wrap img { transform: scale(1.1); }
+    .product-badge {
+      position: absolute; top: 1rem; left: 1rem;
+      background: linear-gradient(135deg, #f97f0e, #c24907);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 99px;
+    }
+    .quick-view-btn {
+      position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%) translateY(10px);
+      background: rgba(26,10,0,0.85);
+      backdrop-filter: blur(8px);
+      color: #ffc170;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 1.25rem;
+      border-radius: 99px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .product-card:hover .quick-view-btn { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #f97f0e;
+    }
+    .product-price .old-price {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #999;
+      text-decoration: line-through;
+      margin-left: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ---- Category Cards ---- */
+    .category-card {
+      border-radius: 1rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .category-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .category-card:hover { transform: translateY(-4px); }
+    .category-card:hover::before { opacity: 1; }
+    .cat-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.75rem;
+      transition: transform 0.3s ease;
+    }
+    .category-card:hover .cat-icon { transform: scale(1.15) rotate(-5deg); }
+
+    /* ---- Testimonials ---- */
+    .testimonial-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 2rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .dark .testimonial-card { background: #1f0d03; }
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: #f97f0e;
+      opacity: 0.2;
+      position: absolute;
+      top: 0.5rem; left: 1.25rem;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); }
+    .stars { color: #f97f0e; font-size: 0.9rem; }
+
+    /* ---- Stats ---- */
+    .stat-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: #ffc170;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---- Gallery Masonry ---- */
+    .masonry-grid {
+      columns: 3;
+      column-gap: 1rem;
+    }
+    @media (max-width: 768px) { .masonry-grid { columns: 2; } }
+    @media (max-width: 480px) { .masonry-grid { columns: 1; } }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .masonry-item img {
+      width: 100%; display: block;
+      transition: transform 0.5s ease;
+    }
+    .masonry-item:hover img { transform: scale(1.06); }
+    .masonry-overlay {
+      position: absolute; inset: 0;
+      background: rgba(26,10,0,0.5);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .masonry-item:hover .masonry-overlay { opacity: 1; }
+
+    /* ---- Process ---- */
+    .process-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+    .process-number {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f97f0e, #c24907);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 8px 24px rgba(249,127,14,0.35);
+    }
+
+    /* ---- Contact ---- */
+    .contact-input {
+      width: 100%;
+      background: rgba(249,127,14,0.05);
+      border: 1px solid rgba(249,127,14,0.2);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .contact-input:focus {
+      border-color: #f97f0e;
+      box-shadow: 0 0 0 3px rgba(249,127,14,0.12);
+    }
+    .dark .contact-input { background: rgba(249,127,14,0.08); color: #f0e6d3; }
+
+    /* ---- Footer ---- */
+    #footer {
+      background: #0f0500;
+      color: #f0e6d3;
+    }
+    .footer-link {
+      color: rgba(240,230,211,0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .footer-link:hover { color: #ffc170; }
+
+    /* ---- Glassmorphism ---- */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+    }
+
+    /* ---- Reveal Animations ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible { opacity: 1; transform: none; }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right.visible { opacity: 1; transform: none; }
+
+    /* ---- Back to Top ---- */
+    #back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #f97f0e, #c24907);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 1.25rem;
+      cursor: pointer;
+      border: none;
+      opacity: 0; visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(249,127,14,0.4);
+      z-index: 99;
+    }
+    #back-to-top.show { opacity: 1; visibility: visible; }
+    #back-to-top:hover { transform: translateY(-3px); }
+
+    /* ---- WA Float ---- */
+    #wa-float {
+      position: fixed; bottom: 5.5rem; right: 2rem;
+      background: #25d366;
+      border-radius: 50%;
+      width: 52px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.5rem;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+      text-decoration: none;
+      z-index: 99;
+      transition: transform 0.3s ease;
+      animation: waPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+      50%      { box-shadow: 0 8px 40px rgba(37,211,102,0.7); }
+    }
+    #wa-float:hover { transform: scale(1.1); color: #fff; }
+
+    /* ---- Modal ---- */
+    .lightbox-modal .modal-dialog { max-width: 800px; }
+    .lightbox-modal .modal-content {
+      background: transparent; border: none;
+    }
+    .lightbox-modal img { border-radius: 1rem; width: 100%; }
+    .lightbox-modal .btn-close-custom {
+      position: absolute; top: -2rem; right: 0;
+      background: rgba(255,255,255,0.2);
+      border: none; border-radius: 50%;
+      width: 36px; height: 36px;
+      color: #fff; font-size: 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+
+    /* ---- Dark mode toggle ---- */
+    #dark-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 99px;
+      padding: 0.3rem 0.6rem;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+    #dark-toggle:hover { background: rgba(255,255,255,0.2); }
+
+    /* ---- Accordion ---- */
+    .faq-accordion .accordion-button {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      background: transparent;
+      color: inherit;
+    }
+    .faq-accordion .accordion-button:not(.collapsed) {
+      background: rgba(249,127,14,0.08);
+      color: #f97f0e;
+      box-shadow: none;
+    }
+    .faq-accordion .accordion-item {
+      border: 1px solid rgba(249,127,14,0.15);
+      border-radius: 0.75rem !important;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      background: #fff;
+    }
+    .dark .faq-accordion .accordion-item { background: #1f0d03; }
+    .faq-accordion .accordion-button::after { filter: hue-rotate(30deg); }
+
+    /* ---- Best Sellers ribbon ---- */
+    .bestseller-ribbon {
+      position: absolute; top: 1rem; right: 0;
+      background: #c24907;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem 0.3rem 0.75rem;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 8px 50%);
+    }
+
+    /* Responsive helpers */
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     LOADING SCREEN
+     ============================================================ -->
+<div id="loading-screen">
+  <div class="loader-logo">
+    <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#f97f0e,#c24907);display:flex;align-items:center;justify-content:center;font-size:2rem;">🫙</div>
+    <div class="loader-text">Jumani Foods</div>
+    <div style="font-size:0.7rem;letter-spacing:0.3em;color:#c28040;text-transform:uppercase;margin-top:-0.75rem;">Taste the Tradition</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FLOATING BUTTONS
+     ============================================================ -->
+<a id="wa-float" href="https://wa.me/92300000000?text=Hi%20Jumani%20Food%20Products%2C%20I%20want%20to%20order!" target="_blank" title="Chat on WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+  <i class="bi bi-arrow-up"></i>
+</button>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <!-- Logo -->
+      <a href="#hero" class="text-decoration-none d-flex align-items-center gap-2">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#f97f0e,#c24907);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🫙</div>
+        <div>
+          <div class="nav-logo-text">Jumani Foods</div>
+          <div class="nav-logo-sub">Taste the Tradition</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="d-none d-lg-flex align-items-center gap-4">
+        <a href="#about"    class="nav-link-item">About</a>
+        <a href="#products" class="nav-link-item">Products</a>
+        <a href="#categories" class="nav-link-item">Categories</a>
+        <a href="#reviews"  class="nav-link-item">Reviews</a>
+        <a href="#gallery"  class="nav-link-item">Gallery</a>
+        <a href="#contact"  class="nav-link-item">Contact</a>
+      </div>
+
+      <!-- Right Icons -->
+      <div class="d-none d-lg-flex align-items-center gap-3">
+        <a href="https://www.instagram.com/jumani_food_products" target="_blank" class="nav-link-item" style="font-size:1.1rem;"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.facebook.com/share/1JGkJh1PUX/" target="_blank" class="nav-link-item" style="font-size:1.1rem;"><i class="bi bi-facebook"></i></a>
+        <button id="dark-toggle" onclick="toggleDark()"><i class="bi bi-moon-stars-fill"></i></button>
+        <a href="https://wa.me/92300000000" target="_blank" class="btn-hero-primary" style="font-size:0.8rem;padding:0.5rem 1.25rem;">
+          <i class="bi bi-whatsapp"></i> Order Now
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="d-flex d-lg-none align-items-center gap-2">
+        <button id="dark-toggle-mobile" onclick="toggleDark()" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:99px;padding:0.25rem 0.5rem;color:#fff;font-size:1rem;cursor:pointer;"><i class="bi bi-moon-stars-fill"></i></button>
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:0.5rem;padding:0.5rem 0.6rem;color:#fff;font-size:1.1rem;cursor:pointer;"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" style="display:none; padding:1rem 0;" class="d-lg-none">
+      <div style="background:rgba(26,10,0,0.95);backdrop-filter:blur(16px);border-radius:1rem;padding:1.5rem;margin-top:0.75rem;">
+        <div class="d-flex flex-column gap-3">
+          <a href="#about"      class="nav-link-item" onclick="closeMobileMenu()">About</a>
+          <a href="#products"   class="nav-link-item" onclick="closeMobileMenu()">Products</a>
+          <a href="#categories" class="nav-link-item" onclick="closeMobileMenu()">Categories</a>
+          <a href="#reviews"    class="nav-link-item" onclick="closeMobileMenu()">Reviews</a>
+          <a href="#gallery"    class="nav-link-item" onclick="closeMobileMenu()">Gallery</a>
+          <a href="#contact"    class="nav-link-item" onclick="closeMobileMenu()">Contact</a>
+          <div class="d-flex gap-3 mt-2">
+            <a href="https://www.instagram.com/jumani_food_products" target="_blank" class="nav-link-item"><i class="bi bi-instagram"></i> Instagram</a>
+            <a href="https://www.facebook.com/share/1JGkJh1PUX/" target="_blank" class="nav-link-item"><i class="bi bi-facebook"></i> Facebook</a>
+          </div>
+          <a href="https://wa.me/92300000000" target="_blank" class="btn-hero-primary text-center" style="font-size:0.9rem;">
+            <i class="bi bi-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section id="hero">
+  <div class="spice-pattern"></div>
+  <!-- Floating Circles -->
+  <div class="hero-bg-shapes">
+    <div class="hero-circle" style="width:600px;height:600px;top:-200px;right:-100px;animation-duration:20s;"></div>
+    <div class="hero-circle" style="width:400px;height:400px;bottom:-100px;left:-100px;animation-duration:15s;"></div>
+    <div class="hero-circle" style="width:200px;height:200px;top:40%;left:30%;animation-duration:12s;opacity:0.04;"></div>
+  </div>
+
+  <div class="container" style="position:relative;z-index:2;padding-top:6rem;padding-bottom:6rem;">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="reveal">
+          <div class="hero-badge">
+            <span>🌶️</span> Authentic Pakistani Flavours
+          </div>
+          <h1 class="hero-title">
+            <span class="accent">Taste</span> the<br/>
+            Tradition of<br/>
+            Generations
+          </h1>
+          <p class="hero-desc mt-4">
+            Hand-crafted pickles, aromatic spices & traditional condiments made with pure ingredients and age-old recipes. Delivered fresh across Pakistan.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-5">
+            <a href="#products" class="btn-hero-primary">
+              <i class="bi bi-bag-heart"></i> Shop Now
+            </a>
+            <a href="https://wa.me/92300000000" target="_blank" class="btn-hero-outline">
+              <i class="bi bi-whatsapp"></i> WhatsApp Order
+            </a>
+          </div>
+
+          <!-- Trust badges -->
+          <div class="d-flex flex-wrap gap-4 mt-5">
+            <div class="d-flex align-items-center gap-2 text-white" style="opacity:0.8;font-size:0.85rem;">
+              <i class="bi bi-patch-check-fill text-warning"></i> 100% Halal
+            </div>
+            <div class="d-flex align-items-center gap-2 text-white" style="opacity:0.8;font-size:0.85rem;">
+              <i class="bi bi-truck text-warning"></i> Pan-Pakistan Delivery
+            </div>
+            <div class="d-flex align-items-center gap-2 text-white" style="opacity:0.8;font-size:0.85rem;">
+              <i class="bi bi-heart-fill text-warning"></i> Homemade Quality
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual -->
+      <div class="col-lg-6 d-none d-lg-block">
+        <div class="reveal" style="transition-delay:0.2s;">
+          <div style="position:relative;">
+            <!-- Main jar image area -->
+            <div style="background:rgba(249,127,14,0.1);backdrop-filter:blur(20px);border:1px solid rgba(249,127,14,0.2);border-radius:2rem;padding:3rem;text-align:center;position:relative;overflow:hidden;">
+              <div style="font-size:8rem;line-height:1;animation:floatCircle 6s ease-in-out infinite;">🫙</div>
+              <div style="position:absolute;top:1rem;right:1rem;background:rgba(249,127,14,0.2);border:1px solid rgba(249,127,14,0.3);border-radius:1rem;padding:0.75rem 1rem;">
+                <div style="color:#ffc170;font-size:0.75rem;font-weight:700;">⭐ 4.9 Rating</div>
+                <div style="color:rgba(255,255,255,0.6);font-size:0.65rem;margin-top:0.2rem;">2,400+ Reviews</div>
+              </div>
+              <div style="position:absolute;bottom:1rem;left:1rem;background:rgba(37,211,102,0.15);border:1px solid rgba(37,211,102,0.3);border-radius:1rem;padding:0.75rem 1rem;">
+                <div style="color:#25d366;font-size:0.75rem;font-weight:700;">✓ In Stock</div>
+                <div style="color:rgba(255,255,255,0.6);font-size:0.65rem;margin-top:0.2rem;">Fast Delivery</div>
+              </div>
+
+              <!-- Floating spice chips -->
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:1.5rem;">
+                <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:99px;padding:0.3rem 0.75rem;color:rgba(255,255,255,0.8);font-size:0.75rem;">🥭 Mango Pickle</span>
+                <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:99px;padding:0.3rem 0.75rem;color:rgba(255,255,255,0.8);font-size:0.75rem;">🌶️ Chilli Achar</span>
+                <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:99px;padding:0.3rem 0.75rem;color:rgba(255,255,255,0.8);font-size:0.75rem;">🧄 Garlic Pickle</span>
+                <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:99px;padding:0.3rem 0.75rem;color:rgba(255,255,255,0.8);font-size:0.75rem;">🍋 Lemon Achar</span>
+                <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:99px;padding:0.3rem 0.75rem;color:rgba(255,255,255,0.8);font-size:0.75rem;">🌿 Mixed Pickle</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <i class="bi bi-chevron-double-down"></i>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT SECTION
+     ============================================================ -->
+<section id="about" class="py-5" style="background:#fff;" >
+  <div class="dark-section-helper"></div>
+  <div class="container py-5">
+    <div class="row g-5 align-items-center">
+      <!-- Visual side -->
+      <div class="col-lg-5 reveal-left">
+        <div style="position:relative;">
+          <div style="background:linear-gradient(135deg,#f97f0e,#c24907);border-radius:2rem;padding:3rem;text-align:center;color:#fff;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
+            <div style="font-size:4rem;margin-bottom:1rem;">🏠</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;">Born in Karachi</h3>
+            <p style="opacity:0.85;margin-top:0.75rem;line-height:1.7;font-size:0.95rem;">Our journey started in a family kitchen with recipes passed down through generations. Every jar carries the love of our ancestors.</p>
+            <div style="margin-top:2rem;display:flex;gap:1.5rem;justify-content:center;">
+              <div><div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;">10+</div><div style="font-size:0.75rem;opacity:0.8;text-transform:uppercase;letter-spacing:0.1em;">Years</div></div>
+              <div style="width:1px;background:rgba(255,255,255,0.3);"></div>
+              <div><div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;">25+</div><div style="font-size:0.75rem;opacity:0.8;text-transform:uppercase;letter-spacing:0.1em;">Products</div></div>
+              <div style="width:1px;background:rgba(255,255,255,0.3);"></div>
+              <div><div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;">5K+</div><div style="font-size:0.75rem;opacity:0.8;text-transform:uppercase;letter-spacing:0.1em;">Customers</div></div>
+            </div>
+          </div>
+
+          <!-- Floating card -->
+          <div style="position:absolute;bottom:-2rem;right:-2rem;background:#fff;border-radius:1rem;padding:1.25rem 1.5rem;box-shadow:0 12px 40px rgba(0,0,0,0.12);min-width:180px;">
+            <div style="font-size:1.5rem;">🌟</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1a0a00;margin-top:0.25rem;">100% Natural</div>
+            <div style="font-size:0.8rem;color:#8e6236;">No artificial preservatives</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content side -->
+      <div class="col-lg-7 reveal-right">
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-title" style="color:#1a0a00;">Crafted with Love,<br/><em>Rooted in Tradition</em></h2>
+        <p style="margin-top:1.25rem;color:#5a3a20;line-height:1.8;font-size:1rem;">
+          Jumani Food Products was founded with a simple but powerful mission: to bring the authentic taste of homemade Pakistani condiments to every household across the country. What started as secret family recipes has grown into a beloved brand trusted by thousands.
+        </p>
+        <p style="margin-top:1rem;color:#5a3a20;line-height:1.8;font-size:1rem;">
+          Based in Karachi, we handcraft our pickles, spices, and chutneys using fresh, locally sourced ingredients and traditional methods — no shortcuts, no compromises. Every jar is a promise of quality.
+        </p>
+
+        <div class="row g-3 mt-2">
+          <div class="col-sm-6">
+            <div style="background:#faf6f0;border-radius:1rem;padding:1.25rem;border:1px solid rgba(249,127,14,0.1);">
+              <div style="font-size:1.5rem;margin-bottom:0.5rem;">🎯</div>
+              <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Our Mission</h4>
+              <p style="font-size:0.85rem;color:#8e6236;margin-top:0.25rem;line-height:1.6;">Preserve traditional flavours and make them accessible to all Pakistanis.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:#faf6f0;border-radius:1rem;padding:1.25rem;border:1px solid rgba(249,127,14,0.1);">
+              <div style="font-size:1.5rem;margin-bottom:0.5rem;">👁️</div>
+              <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Our Vision</h4>
+              <p style="font-size:0.85rem;color:#8e6236;margin-top:0.25rem;line-height:1.6;">To become Pakistan's most trusted premium food brand with global reach.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:#faf6f0;border-radius:1rem;padding:1.25rem;border:1px solid rgba(249,127,14,0.1);">
+              <div style="font-size:1.5rem;margin-bottom:0.5rem;">✅</div>
+              <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Halal Certified</h4>
+              <p style="font-size:0.85rem;color:#8e6236;margin-top:0.25rem;line-height:1.6;">All products fully halal with strict quality control and hygiene standards.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:#faf6f0;border-radius:1rem;padding:1.25rem;border:1px solid rgba(249,127,14,0.1);">
+              <div style="font-size:1.5rem;margin-bottom:0.5rem;">🚚</div>
+              <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Nationwide Delivery</h4>
+              <p style="font-size:0.85rem;color:#8e6236;margin-top:0.25rem;line-height:1.6;">Fast, safe delivery to your doorstep anywhere in Pakistan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CATEGORIES SECTION
+     ============================================================ -->
+<section id="categories" style="background:#faf6f0;" class="py-5">
+  <div class="container py-5">
+    <div class="text-center mb-5 reveal">
+      <div class="section-tag">Browse</div>
+      <h2 class="section-title" style="color:#1a0a00;">Our Product <em>Categories</em></h2>
+      <p style="color:#8e6236;max-width:480px;margin:1rem auto;font-size:1rem;">From fiery pickles to aromatic spice blends — explore our full range of traditional Pakistani food products.</p>
+    </div>
+    <div class="row g-3">
+      <!-- Cat cards -->
+      <div class="col-6 col-md-4 col-lg-2 reveal" style="transition-delay:0.05s;">
+        <div class="category-card" style="background:#fff;border:1px solid rgba(249,127,14,0.12);">
+          <div class="cat-icon" style="background:rgba(249,127,14,0.1);">🥭</div>
+          <h5 style="font-size:0.9rem;font-weight:600;color:#1a0a00;">Mango Pickle</h5>
+          <p style="font-size:0.75rem;color:#8e6236;margin-top:0.25rem;">6 varieties</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal" style="transition-delay:0.1s;">
+        <div class="category-card" style="background:#fff;border:1px solid rgba(192,57,43,0.12);">
+          <div class="cat-icon" style="background:rgba(192,57,43,0.1);">🌶️</div>
+          <h5 style="font-size:0.9rem;font-weight:600;color:#1a0a00;">Chilli Achar</h5>
+          <p style="font-size:0.75rem;color:#8e6236;margin-top:0.25rem;">4 varieties</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal" style="transition-delay:0.15s;">
+        <div class="category-card" style="background:#fff;border:1px solid rgba(45,106,79,0.12);">
+          <div class="cat-icon" style="background:rgba(45,106,79,0.1);">🧄</div>
+          <h5 style="font-size:0.9rem;font-weight:600;color:#1a0a00;">Garlic Pickle</h5>
+          <p style="font-size:0.75rem;color:#8e6236;margin-top:0.25rem;">3 varieties</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal" style="transition-delay:0.2s;">
+        <div class="category-card" style="background:#fff;border:1px solid rgba(212,160,23,0.2);">
+          <div class="cat-icon" style="background:rgba(212,160,23,0.1);">🫙</div>
+          <h5 style="font-size:0.9rem;font-weight:600;color:#1a0a00;">Mixed Pickle</h5>
+          <p style="font-size:0.75rem;color:#8e6236;margin-top:0.25rem;">5 varieties</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal" style="transition-delay:0.25s;">
+        <div class="category-card" style="background:#fff;border:1px solid rgba(249,127,14,0.12);">
+          <div class="cat-icon" style="background:rgba(249,127,14,0.1);">🌿</div>
+          <h5 style="font-size:0.9rem;font-weight:600;color:#1a0a00;">Spice Blends</h5>
+          <p style="font-size:0.75rem;color:#8e6236;margin-top:0.25rem;">8 varieties</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal" style="transition-delay:0.3s;">
+        <div class="category-card" style="background:#fff;border:1px solid rgba(192,57,43,0.12);">
+          <div class="cat-icon" style="background:rgba(192,57,43,0.1);">🍯</div>
+          <h5 style="font-size:0.9rem;font-weight:600;color:#1a0a00;">Chutneys</h5>
+          <p style="font-size:0.75rem;color:#8e6236;margin-top:0.25rem;">5 varieties</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURED PRODUCTS
+     ============================================================ -->
+<section id="products" class="py-5" style="background:#fff;">
+  <div class="container py-5">
+    <div class="text-center mb-5 reveal">
+      <div class="section-tag">Products</div>
+      <h2 class="section-title" style="color:#1a0a00;">Featured <em>Products</em></h2>
+      <p style="color:#8e6236;max-width:480px;margin:1rem auto;">Handcrafted with the finest ingredients. Each jar is sealed with tradition and flavour.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Product 1 -->
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:0.05s;">
+        <div class="product-card" onclick="openProductModal('Mango Achar (Keri ka Achar)','The classic Pakistani mango pickle made with raw Sindhri mangoes, mustard oil, and a secret blend of 12 spices. Bold, tangy, and irresistibly delicious.','Rs. 350','Rs. 420','🥭')">
+          <div class="img-wrap" style="background:linear-gradient(135deg,#fff8ed,#ffefd4);display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:6rem;">🥭</div>
+            <div class="product-badge">Bestseller</div>
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div style="padding:1.25rem;">
+            <p style="font-size:0.75rem;color:#f97f0e;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.25rem;">Mango Pickle</p>
+            <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Keri ka Achar</h4>
+            <p style="font-size:0.82rem;color:#8e6236;margin-top:0.35rem;line-height:1.5;">Tangy raw mango with 12-spice blend in pure mustard oil</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;">
+              <div class="product-price">Rs. 350 <span class="old-price">Rs. 420</span></div>
+              <a href="https://wa.me/92300000000?text=I want to order Keri ka Achar" target="_blank" style="background:#f97f0e;color:#fff;border:none;border-radius:99px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="bi bi-bag-plus"></i> Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:0.1s;">
+        <div class="product-card" onclick="openProductModal('Green Chilli Achar','Fiery green chillies pickled in aromatic spices and mustard oil. Perfect for those who love a bold, spicy kick with every meal.','Rs. 280','Rs. 350','🌶️')">
+          <div class="img-wrap" style="background:linear-gradient(135deg,#f0fff4,#d4edda);display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:6rem;">🌶️</div>
+            <div class="product-badge">Spicy</div>
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div style="padding:1.25rem;">
+            <p style="font-size:0.75rem;color:#f97f0e;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.25rem;">Chilli Achar</p>
+            <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Hari Mirch Achar</h4>
+            <p style="font-size:0.82rem;color:#8e6236;margin-top:0.35rem;line-height:1.5;">Fiery green chillies in aromatic mustard oil blend</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;">
+              <div class="product-price">Rs. 280 <span class="old-price">Rs. 350</span></div>
+              <a href="https://wa.me/92300000000?text=I want to order Hari Mirch Achar" target="_blank" style="background:#f97f0e;color:#fff;border:none;border-radius:99px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="bi bi-bag-plus"></i> Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:0.15s;">
+        <div class="product-card" onclick="openProductModal('Mixed Vegetable Achar','A colourful medley of carrots, cauliflower, lotus root & green mangoes pickled together in a rich, tangy brine. Everybody\'s favourite!','Rs. 320','Rs. 400','🫙')">
+          <div class="img-wrap" style="background:linear-gradient(135deg,#fff8ed,#fde8c0);display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:6rem;">🫙</div>
+            <div class="product-badge">Popular</div>
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div style="padding:1.25rem;">
+            <p style="font-size:0.75rem;color:#f97f0e;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.25rem;">Mixed Pickle</p>
+            <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Khatai Mix Achar</h4>
+            <p style="font-size:0.82rem;color:#8e6236;margin-top:0.35rem;line-height:1.5;">Colourful vegetable medley in tangy spiced brine</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;">
+              <div class="product-price">Rs. 320 <span class="old-price">Rs. 400</span></div>
+              <a href="https://wa.me/92300000000?text=I want to order Khatai Mix Achar" target="_blank" style="background:#f97f0e;color:#fff;border:none;border-radius:99px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="bi bi-bag-plus"></i> Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:0.2s;">
+        <div class="product-card" onclick="openProductModal('Garlic Lemon Achar','The perfect balance of zesty lemon and pungent garlic, slow-cured in sunlight with hand-ground spices. A Karachi favourite.','Rs. 300','Rs. 380','🧄')">
+          <div class="img-wrap" style="background:linear-gradient(135deg,#fffff0,#fefcbf);display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:6rem;">🧄</div>
+            <div class="product-badge">New</div>
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div style="padding:1.25rem;">
+            <p style="font-size:0.75rem;color:#f97f0e;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.25rem;">Garlic Pickle</p>
+            <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Lahsun Lemon Achar</h4>
+            <p style="font-size:0.82rem;color:#8e6236;margin-top:0.35rem;line-height:1.5;">Zesty lemon & garlic slow-cured with hand-ground spices</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;">
+              <div class="product-price">Rs. 300 <span class="old-price">Rs. 380</span></div>
+              <a href="https://wa.me/92300000000?text=I want to order Lahsun Lemon Achar" target="_blank" style="background:#f97f0e;color:#fff;border:none;border-radius:99px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="bi bi-bag-plus"></i> Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:0.05s;">
+        <div class="product-card" onclick="openProductModal('Imli Chutney (Tamarind)','Our signature sweet and tangy tamarind chutney made with jaggery, ginger and spices — a must-have condiment for chaat lovers.','Rs. 200','Rs. 260','🍯')">
+          <div class="img-wrap" style="background:linear-gradient(135deg,#fdf2e9,#fde8c0);display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:6rem;">🍯</div>
+            <div class="product-badge">Classic</div>
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div style="padding:1.25rem;">
+            <p style="font-size:0.75rem;color:#f97f0e;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.25rem;">Chutney</p>
+            <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Imli Chutney</h4>
+            <p style="font-size:0.82rem;color:#8e6236;margin-top:0.35rem;line-height:1.5;">Sweet-tangy tamarind with jaggery & hand-ground spices</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;">
+              <div class="product-price">Rs. 200 <span class="old-price">Rs. 260</span></div>
+              <a href="https://wa.me/92300000000?text=I want to order Imli Chutney" target="_blank" style="background:#f97f0e;color:#fff;border:none;border-radius:99px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="bi bi-bag-plus"></i> Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:0.1s;">
+        <div class="product-card" onclick="openProductModal('Biryani Masala','A premium blend of 18 whole spices slow-roasted and ground to perfection for the most aromatic, authentic biryani experience.','Rs. 250','Rs. 300','🌿')">
+          <div class="img-wrap" style="background:linear-gradient(135deg,#f0faf0,#c6f6d5);display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:6rem;">🌿</div>
+            <div class="product-badge">Premium</div>
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div style="padding:1.25rem;">
+            <p style="font-size:0.75rem;color:#f97f0e;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.25rem;">Spice Blend</p>
+            <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Biryani Masala</h4>
+            <p style="font-size:0.82rem;color:#8e6236;margin-top:0.35rem;line-height:1.5;">18-spice premium blend for the most aromatic biryani</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;">
+              <div class="product-price">Rs. 250 <span class="old-price">Rs. 300</span></div>
+              <a href="https://wa.me/92300000000?text=I want to order Biryani Masala" target="_blank" style="background:#f97f0e;color:#fff;border:none;border-radius:99px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="bi bi-bag-plus"></i> Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:0.15s;">
+        <div class="product-card" onclick="openProductModal('Karahi Masala','The soul of Karachi cooking. Our special Karahi masala brings restaurant-quality flavour to your home kitchen in minutes.','Rs. 220','Rs. 280','🫕')">
+          <div class="img-wrap" style="background:linear-gradient(135deg,#fff5f5,#fed7d7);display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:6rem;">🫕</div>
+            <div class="product-badge">Fan Fav</div>
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div style="padding:1.25rem;">
+            <p style="font-size:0.75rem;color:#f97f0e;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.25rem;">Spice Blend</p>
+            <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Karahi Masala</h4>
+            <p style="font-size:0.82rem;color:#8e6236;margin-top:0.35rem;line-height:1.5;">Restaurant-quality Karachi Karahi masala for home cooks</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;">
+              <div class="product-price">Rs. 220 <span class="old-price">Rs. 280</span></div>
+              <a href="https://wa.me/92300000000?text=I want to order Karahi Masala" target="_blank" style="background:#f97f0e;color:#fff;border:none;border-radius:99px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="bi bi-bag-plus"></i> Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="col-md-6 col-lg-3 reveal" style="transition-delay:0.2s;">
+        <div class="product-card" onclick="openProductModal('Garam Masala Whole','Handpicked whole spices — cinnamon sticks, cardamom pods, cloves and star anise — for the most fragrant slow-cooked curries and rice.','Rs. 180','Rs. 240','⭐')">
+          <div class="img-wrap" style="background:linear-gradient(135deg,#fffbeb,#fef3c7);display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:6rem;">⭐</div>
+            <div class="product-badge">Pure</div>
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div style="padding:1.25rem;">
+            <p style="font-size:0.75rem;color:#f97f0e;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.25rem;">Whole Spices</p>
+            <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Garam Masala Whole</h4>
+            <p style="font-size:0.82rem;color:#8e6236;margin-top:0.35rem;line-height:1.5;">Handpicked whole spices for slow-cooked curries & rice</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;">
+              <div class="product-price">Rs. 180 <span class="old-price">Rs. 240</span></div>
+              <a href="https://wa.me/92300000000?text=I want to order Garam Masala Whole" target="_blank" style="background:#f97f0e;color:#fff;border:none;border-radius:99px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;"><i class="bi bi-bag-plus"></i> Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /row -->
+
+    <div class="text-center mt-5 reveal">
+      <a href="https://wa.me/92300000000?text=Please share your full product catalogue" target="_blank" class="btn-hero-primary">
+        <i class="bi bi-grid-3x3-gap"></i> View All Products
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BEST SELLERS
+     ============================================================ -->
+<section id="bestsellers" style="background:linear-gradient(135deg,#1a0a00,#3d1a08);" class="py-5">
+  <div class="container py-5">
+    <div class="text-center mb-5 reveal">
+      <div class="section-tag" style="color:#ffc170;">
+        <span style="background:#ffc170;width:24px;height:1px;display:inline-block;"></span>
+        Best Sellers
+        <span style="background:#ffc170;width:24px;height:1px;display:inline-block;"></span>
+      </div>
+      <h2 class="section-title" style="color:#fff;">Customer <em style="color:#ffc170;">Favourites</em></h2>
+      <p style="color:rgba(255,255,255,0.6);max-width:440px;margin:1rem auto;">These top-sellers fly off the shelf. Order yours before they sell out!</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4 reveal" style="transition-delay:0.05s;">
+        <div style="background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);border:1px solid rgba(249,127,14,0.2);border-radius:1.5rem;padding:2rem;position:relative;transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='none'">
+          <div class="bestseller-ribbon">🔥 #1 Bestseller</div>
+          <div style="font-size:4rem;margin-bottom:1rem;text-align:center;">🥭</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:#ffc170;">Keri ka Achar</h3>
+          <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;margin-top:0.5rem;line-height:1.6;">Our signature mango pickle — the one that started it all. Consistently rated our #1 product.</p>
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1rem;">
+            <span style="color:#ffc170;font-size:0.9rem;">★★★★★</span>
+            <span style="color:rgba(255,255,255,0.5);font-size:0.8rem;">4.9 (890 reviews)</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#ffc170;font-weight:700;">Rs. 350</div>
+            <a href="https://wa.me/92300000000?text=Order Keri ka Achar" target="_blank" class="btn-hero-primary" style="font-size:0.82rem;padding:0.5rem 1.1rem;">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 reveal" style="transition-delay:0.1s;">
+        <div style="background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);border:1px solid rgba(249,127,14,0.2);border-radius:1.5rem;padding:2rem;position:relative;transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='none'">
+          <div class="bestseller-ribbon" style="background:#8e6236;">🌶️ #2 Bestseller</div>
+          <div style="font-size:4rem;margin-bottom:1rem;text-align:center;">🌶️</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:#ffc170;">Hari Mirch Achar</h3>
+          <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;margin-top:0.5rem;line-height:1.6;">Spice lovers can't get enough of our fiery green chilli pickle — bold, punchy and addictive.</p>
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1rem;">
+            <span style="color:#ffc170;font-size:0.9rem;">★★★★★</span>
+            <span style="color:rgba(255,255,255,0.5);font-size:0.8rem;">4.8 (620 reviews)</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#ffc170;font-weight:700;">Rs. 280</div>
+            <a href="https://wa.me/92300000000?text=Order Hari Mirch Achar" target="_blank" class="btn-hero-primary" style="font-size:0.82rem;padding:0.5rem 1.1rem;">Order Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 reveal" style="transition-delay:0.15s;">
+        <div style="background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);border:1px solid rgba(249,127,14,0.2);border-radius:1.5rem;padding:2rem;position:relative;transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='none'">
+          <div class="bestseller-ribbon" style="background:#2d6a4f;">🫙 #3 Bestseller</div>
+          <div style="font-size:4rem;margin-bottom:1rem;text-align:center;">🫕</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:#ffc170;">Biryani Masala</h3>
+          <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;margin-top:0.5rem;line-height:1.6;">Our premium 18-spice biryani blend that transforms home cooking into a restaurant experience.</p>
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1rem;">
+            <span style="color:#ffc170;font-size:0.9rem;">★★★★★</span>
+            <span style="color:rgba(255,255,255,0.5);font-size:0.8rem;">4.9 (540 reviews)</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;">
+            <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#ffc170;font-weight:700;">Rs. 250</div>
+            <a href="https://wa.me/92300000000?text=Order Biryani Masala" target="_blank" class="btn-hero-primary" style="font-size:0.82rem;padding:0.5rem 1.1rem;">Order Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STATISTICS SECTION
+     ============================================================ -->
+<section id="stats" style="background:linear-gradient(135deg,#f97f0e,#c24907);" class="py-5">
+  <div class="container py-4">
+    <div class="row g-0">
+      <div class="col-6 col-md-3 reveal">
+        <div class="stat-card" style="border-right:1px solid rgba(255,255,255,0.2);">
+          <div class="stat-number" data-target="5000" style="color:#fff;">0</div>
+          <div class="stat-label" style="color:rgba(255,255,255,0.75);">Happy Customers</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 reveal" style="transition-delay:0.1s;">
+        <div class="stat-card" style="border-right:1px solid rgba(255,255,255,0.2);">
+          <div class="stat-number" data-target="12000" style="color:#fff;">0</div>
+          <div class="stat-label" style="color:rgba(255,255,255,0.75);">Orders Delivered</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 reveal" style="transition-delay:0.2s;">
+        <div class="stat-card" style="border-right:1px solid rgba(255,255,255,0.2);">
+          <div class="stat-number" data-target="25" style="color:#fff;">0</div>
+          <div class="stat-label" style="color:rgba(255,255,255,0.75);">Products Available</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 reveal" style="transition-delay:0.3s;">
+        <div class="stat-card">
+          <div class="stat-number" data-target="10" style="color:#fff;">0</div>
+          <div class="stat-label" style="color:rgba(255,255,255,0.75);">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS SECTION
+     ============================================================ -->
+<section id="reviews" class="py-5" style="background:#faf6f0;">
+  <div class="container py-5">
+    <div class="text-center mb-5 reveal">
+      <div class="section-tag">Testimonials</div>
+      <h2 class="section-title" style="color:#1a0a00;">What Our <em>Customers Say</em></h2>
+      <p style="color:#8e6236;max-width:480px;margin:1rem auto;">Thousands of families across Pakistan trust Jumani Food Products every day.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:0.05s;">
+        <div class="testimonial-card">
+          <div style="position:relative;z-index:1;">
+            <div class="stars">★★★★★</div>
+            <p style="margin-top:1.25rem;color:#5a3a20;font-size:0.92rem;line-height:1.7;">"The mango pickle is absolutely incredible. It tastes exactly like what my dadi used to make. Every jar is perfectly balanced — not too oily, not too dry. My whole family is addicted!"</p>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-top:1.5rem;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#f97f0e,#c24907);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0;">F</div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Fatima Rizvi</div>
+                <div style="font-size:0.78rem;color:#8e6236;">Karachi, DHA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:0.1s;">
+        <div class="testimonial-card">
+          <div style="position:relative;z-index:1;">
+            <div class="stars">★★★★★</div>
+            <p style="margin-top:1.25rem;color:#5a3a20;font-size:0.92rem;line-height:1.7;">"I've been ordering Jumani's Biryani Masala for over 2 years. The difference it makes to my cooking is unbelievable. Friends always ask for my recipe and I tell them — it's all in the masala!"</p>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-top:1.5rem;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#2d6a4f,#1b4332);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0;">A</div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Ahmed Siddiqui</div>
+                <div style="font-size:0.78rem;color:#8e6236;">Karachi, Gulshan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:0.15s;">
+        <div class="testimonial-card">
+          <div style="position:relative;z-index:1;">
+            <div class="stars">★★★★★</div>
+            <p style="margin-top:1.25rem;color:#5a3a20;font-size:0.92rem;line-height:1.7;">"The delivery was super fast and the packaging was beautiful. The chilli achar had us sweating but we couldn't stop eating it! Will definitely reorder. Best Pakistani condiments online."</p>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-top:1.5rem;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#8e6236,#5a3a20);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0;">S</div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Sara Khan</div>
+                <div style="font-size:0.78rem;color:#8e6236;">Lahore, Johar Town</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:0.2s;">
+        <div class="testimonial-card">
+          <div style="position:relative;z-index:1;">
+            <div class="stars">★★★★★</div>
+            <p style="margin-top:1.25rem;color:#5a3a20;font-size:0.92rem;line-height:1.7;">"I send Jumani products to my family abroad every few months. They love receiving a taste of home. The mixed achar travels perfectly and stays fresh for months. Pure quality."</p>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-top:1.5rem;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#c24907,#7c310f);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0;">Z</div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Zara Mahmood</div>
+                <div style="font-size:0.78rem;color:#8e6236;">Islamabad, F-10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:0.25s;">
+        <div class="testimonial-card">
+          <div style="position:relative;z-index:1;">
+            <div class="stars">★★★★☆</div>
+            <p style="margin-top:1.25rem;color:#5a3a20;font-size:0.92rem;line-height:1.7;">"Ordered the garlic lemon achar on a friend's recommendation and I'm obsessed. The balance of flavours is incredible. The lemon cuts through so perfectly. My go-to with every daal."</p>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-top:1.5rem;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#e8a000,#c28040);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0;">H</div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Hassan Ali</div>
+                <div style="font-size:0.78rem;color:#8e6236;">Karachi, North Nazimabad</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 reveal" style="transition-delay:0.3s;">
+        <div class="testimonial-card">
+          <div style="position:relative;z-index:1;">
+            <div class="stars">★★★★★</div>
+            <p style="margin-top:1.25rem;color:#5a3a20;font-size:0.92rem;line-height:1.7;">"As a restaurant owner, I buy the masala blends in bulk. Consistent quality every single time. My customers keep coming back for the biryani and I owe a lot of that to Jumani Masala!"</p>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-top:1.5rem;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#431605,#1a0a00);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0;">M</div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Mudassar Sheikh</div>
+                <div style="font-size:0.78rem;color:#8e6236;">Restaurant Owner, Karachi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALLERY SECTION
+     ============================================================ -->
+<section id="gallery" class="py-5" style="background:#fff;">
+  <div class="container py-5">
+    <div class="text-center mb-5 reveal">
+      <div class="section-tag">Gallery</div>
+      <h2 class="section-title" style="color:#1a0a00;">Product <em>Gallery</em></h2>
+      <p style="color:#8e6236;max-width:480px;margin:1rem auto;">A visual feast of our artisan pickles, spices and condiments made with love.</p>
+    </div>
+    <div class="masonry-grid">
+      <!-- Gallery items using food emojis as placeholders with colourful backgrounds -->
+      <div class="masonry-item reveal" onclick="openLightbox(this.querySelector('div').dataset.emoji, 'Mango Pickle — Keri ka Achar')">
+        <div style="background:linear-gradient(135deg,#fff8ed,#ffd97d);height:220px;display:flex;align-items:center;justify-content:center;font-size:6rem;" data-emoji="🥭">🥭</div>
+        <div class="masonry-overlay"><i class="bi bi-zoom-in" style="color:#fff;font-size:2rem;"></i></div>
+      </div>
+      <div class="masonry-item reveal" onclick="openLightbox(this.querySelector('div').dataset.emoji, 'Chilli Achar — Hari Mirch')">
+        <div style="background:linear-gradient(135deg,#f0fff4,#68d391);height:300px;display:flex;align-items:center;justify-content:center;font-size:6rem;" data-emoji="🌶️">🌶️</div>
+        <div class="masonry-overlay"><i class="bi bi-zoom-in" style="color:#fff;font-size:2rem;"></i></div>
+      </div>
+      <div class="masonry-item reveal" onclick="openLightbox(this.querySelector('div').dataset.emoji, 'Mixed Vegetable Achar')">
+        <div style="background:linear-gradient(135deg,#fff5e6,#ffa348);height:180px;display:flex;align-items:center;justify-content:center;font-size:6rem;" data-emoji="🫙">🫙</div>
+        <div class="masonry-overlay"><i class="bi bi-zoom-in" style="color:#fff;font-size:2rem;"></i></div>
+      </div>
+      <div class="masonry-item reveal" onclick="openLightbox(this.querySelector('div').dataset.emoji, 'Garlic Lemon Pickle')">
+        <div style="background:linear-gradient(135deg,#fffff0,#fefcbf);height:260px;display:flex;align-items:center;justify-content:center;font-size:6rem;" data-emoji="🧄">🧄</div>
+        <div class="masonry-overlay"><i class="bi bi-zoom-in" style="color:#fff;font-size:2rem;"></i></div>
+      </div>
+      <div class="masonry-item reveal" onclick="openLightbox(this.querySelector('div').dataset.emoji, 'Tamarind Chutney')">
+        <div style="background:linear-gradient(135deg,#fdf2e9,#fdc880);height:200px;display:flex;align-items:center;justify-content:center;font-size:6rem;" data-emoji="🍯">🍯</div>
+        <div class="masonry-overlay"><i class="bi bi-zoom-in" style="color:#fff;font-size:2rem;"></i></div>
+      </div>
+      <div class="masonry-item reveal" onclick="openLightbox(this.querySelector('div').dataset.emoji, 'Biryani Masala Spice Blend')">
+        <div style="background:linear-gradient(135deg,#f0faf0,#68d391);height:280px;display:flex;align-items:center;justify-content:center;font-size:6rem;" data-emoji="🌿">🌿</div>
+        <div class="masonry-overlay"><i class="bi bi-zoom-in" style="color:#fff;font-size:2rem;"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW IT WORKS / PROCESS SECTION
+     ============================================================ -->
+<section id="process" style="background:#faf6f0;" class="py-5">
+  <div class="container py-5">
+    <div class="text-center mb-5 reveal">
+      <div class="section-tag">How to Order</div>
+      <h2 class="section-title" style="color:#1a0a00;">Simple <em>Ordering Process</em></h2>
+      <p style="color:#8e6236;max-width:480px;margin:1rem auto;">Getting your favourite Jumani products is quick, easy and delicious. Just 4 simple steps!</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3 reveal" style="transition-delay:0.05s;">
+        <div class="process-card">
+          <div class="process-number">1</div>
+          <div style="font-size:2rem;margin-bottom:0.75rem;">📱</div>
+          <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Browse & Select</h4>
+          <p style="font-size:0.85rem;color:#8e6236;margin-top:0.5rem;line-height:1.6;">Explore our range of pickles, spices and chutneys. Choose your favourites.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 reveal" style="transition-delay:0.1s;">
+        <div class="process-card">
+          <div class="process-number">2</div>
+          <div style="font-size:2rem;margin-bottom:0.75rem;">💬</div>
+          <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">WhatsApp Us</h4>
+          <p style="font-size:0.85rem;color:#8e6236;margin-top:0.5rem;line-height:1.6;">Send us your order via WhatsApp. Our team responds within minutes.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 reveal" style="transition-delay:0.15s;">
+        <div class="process-card">
+          <div class="process-number">3</div>
+          <div style="font-size:2rem;margin-bottom:0.75rem;">💳</div>
+          <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Easy Payment</h4>
+          <p style="font-size:0.85rem;color:#8e6236;margin-top:0.5rem;line-height:1.6;">Pay via EasyPaisa, JazzCash, bank transfer or cash on delivery.</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3 reveal" style="transition-delay:0.2s;">
+        <div class="process-card">
+          <div class="process-number">4</div>
+          <div style="font-size:2rem;margin-bottom:0.75rem;">📦</div>
+          <h4 style="font-size:1rem;font-weight:600;color:#1a0a00;">Fast Delivery</h4>
+          <p style="font-size:0.85rem;color:#8e6236;margin-top:0.5rem;line-height:1.6;">Your order is packed fresh and dispatched. Delivered to your door across Pakistan.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4 reveal">
+      <a href="https://wa.me/92300000000?text=Hi! I want to place an order" target="_blank" class="btn-hero-primary">
+        <i class="bi bi-whatsapp"></i> Start Your Order
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ SECTION
+     ============================================================ -->
+<section id="faq" class="py-5" style="background:#fff;">
+  <div class="container py-5" style="max-width:760px;">
+    <div class="text-center mb-5 reveal">
+      <div class="section-tag">FAQs</div>
+      <h2 class="section-title" style="color:#1a0a00;">Frequently Asked <em>Questions</em></h2>
+    </div>
+    <div class="accordion faq-accordion reveal" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">Do you deliver across Pakistan?</button></h2>
+        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="font-size:0.9rem;color:#5a3a20;line-height:1.7;">Yes! We deliver to all major cities and towns across Pakistan including Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Quetta, Peshawar and more. Delivery typically takes 2–5 business days depending on your location.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Are your products 100% halal?</button></h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="font-size:0.9rem;color:#5a3a20;line-height:1.7;">Absolutely. All Jumani Food Products are 100% halal, made with natural ingredients, and free from any haram substances. We maintain strict hygiene standards throughout our production process.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">What is the shelf life of your products?</button></h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="font-size:0.9rem;color:#5a3a20;line-height:1.7;">Our pickles and chutneys have a shelf life of 6–12 months when stored in a cool, dry place. Once opened, keep refrigerated and consume within 3 months. Our spice blends last up to 18 months when kept in an airtight container away from moisture.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">Do you use artificial preservatives?</button></h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="font-size:0.9rem;color:#5a3a20;line-height:1.7;">No artificial preservatives whatsoever. Our products are naturally preserved using traditional methods — mustard oil, salt, vinegar, and sun-drying — just as they've been made for generations. Pure, natural, and wholesome.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">Can I order in bulk for events or as gifts?</button></h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="font-size:0.9rem;color:#5a3a20;line-height:1.7;">Yes! We offer bulk ordering and beautiful gift hampers, perfect for weddings, Eid, and corporate gifting. WhatsApp us for custom bulk pricing and packaging options. Minimum bulk order starts from 10 jars.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">What payment methods do you accept?</button></h2>
+        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body" style="font-size:0.9rem;color:#5a3a20;line-height:1.7;">We accept EasyPaisa, JazzCash, bank transfers (all major Pakistani banks), and Cash on Delivery (COD) for Karachi orders. All payments are secure and confirmed before dispatch.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT SECTION
+     ============================================================ -->
+<section id="contact" style="background:#faf6f0;" class="py-5">
+  <div class="container py-5">
+    <div class="text-center mb-5 reveal">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title" style="color:#1a0a00;">Contact <em>Us</em></h2>
+      <p style="color:#8e6236;max-width:480px;margin:1rem auto;">Have questions? Want to place a large order? Reach out and we'll respond promptly.</p>
+    </div>
+    <div class="row g-5">
+      <!-- Contact info -->
+      <div class="col-lg-5 reveal-left">
+        <div style="background:#fff;border-radius:1.5rem;padding:2.5rem;box-shadow:0 4px 30px rgba(0,0,0,0.06);">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#1a0a00;margin-bottom:2rem;">Let's Connect</h3>
+          <div class="d-flex flex-column gap-4">
+            <div class="d-flex align-items-start gap-3">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(249,127,14,0.1);display:flex;align-items:center;justify-content:center;color:#f97f0e;font-size:1.1rem;flex-shrink:0;"><i class="bi bi-whatsapp"></i></div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">WhatsApp</div>
+                <a href="https://wa.me/92300000000" target="_blank" style="font-size:0.88rem;color:#8e6236;text-decoration:none;">+92 300 000 0000</a>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(249,127,14,0.1);display:flex;align-items:center;justify-content:center;color:#f97f0e;font-size:1.1rem;flex-shrink:0;"><i class="bi bi-envelope"></i></div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Email</div>
+                <a href="mailto:info@jumanifoodproducts.com" style="font-size:0.88rem;color:#8e6236;text-decoration:none;">info@jumanifoodproducts.com</a>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(249,127,14,0.1);display:flex;align-items:center;justify-content:center;color:#f97f0e;font-size:1.1rem;flex-shrink:0;"><i class="bi bi-geo-alt"></i></div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Location</div>
+                <div style="font-size:0.88rem;color:#8e6236;">Karachi, Sindh, Pakistan</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(249,127,14,0.1);display:flex;align-items:center;justify-content:center;color:#f97f0e;font-size:1.1rem;flex-shrink:0;"><i class="bi bi-clock"></i></div>
+              <div>
+                <div style="font-weight:600;font-size:0.9rem;color:#1a0a00;">Business Hours</div>
+                <div style="font-size:0.88rem;color:#8e6236;">Mon – Sat: 9:00 AM – 8:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(249,127,14,0.1);">
+            <div style="font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#8e6236;margin-bottom:1rem;">Follow Us</div>
+            <div class="d-flex gap-3">
+              <a href="https://www.instagram.com/jumani_food_products" target="_blank" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='none'"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.facebook.com/share/1JGkJh1PUX/" target="_blank" style="width:44px;height:44px;border-radius:50%;background:#1877f2;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='none'"><i class="bi bi-facebook"></i></a>
+              <a href="https://wa.me/92300000000" target="_blank" style="width:44px;height:44px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='none'"><i class="bi bi-whatsapp"></i></a>
+            </div>
+          </div>
+
+          <!-- WhatsApp CTA -->
+          <a href="https://wa.me/92300000000?text=Hi! I want to place an order with Jumani Food Products." target="_blank" class="btn-hero-primary mt-4 w-100 justify-content-center">
+            <i class="bi bi-whatsapp"></i> Order via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-lg-7 reveal-right">
+        <div style="background:#fff;border-radius:1.5rem;padding:2.5rem;box-shadow:0 4px 30px rgba(0,0,0,0.06);">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#1a0a00;margin-bottom:2rem;">Send a Message</h3>
+          <form id="contactForm" onsubmit="handleFormSubmit(event)" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label style="font-size:0.85rem;font-weight:500;color:#5a3a20;margin-bottom:0.4rem;display:block;">Full Name *</label>
+                <input type="text" id="cName" class="contact-input" placeholder="Your name" required />
+                <div id="cNameErr" style="font-size:0.78rem;color:#c24907;margin-top:0.25rem;display:none;">Please enter your name.</div>
+              </div>
+              <div class="col-md-6">
+                <label style="font-size:0.85rem;font-weight:500;color:#5a3a20;margin-bottom:0.4rem;display:block;">Phone / WhatsApp *</label>
+                <input type="tel" id="cPhone" class="contact-input" placeholder="+92 300 000 0000" required />
+                <div id="cPhoneErr" style="font-size:0.78rem;color:#c24907;margin-top:0.25rem;display:none;">Please enter your phone number.</div>
+              </div>
+              <div class="col-12">
+                <label style="font-size:0.85rem;font-weight:500;color:#5a3a20;margin-bottom:0.4rem;display:block;">Email Address</label>
+                <input type="email" id="cEmail" class="contact-input" placeholder="you@example.com" />
+              </div>
+              <div class="col-12">
+                <label style="font-size:0.85rem;font-weight:500;color:#5a3a20;margin-bottom:0.4rem;display:block;">Subject</label>
+                <select id="cSubject" class="contact-input">
+                  <option value="">Select subject...</option>
+                  <option>Place an Order</option>
+                  <option>Bulk / Wholesale Inquiry</option>
+                  <option>Gift Hamper Inquiry</option>
+                  <option>Product Question</option>
+                  <option>Delivery Question</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label style="font-size:0.85rem;font-weight:500;color:#5a3a20;margin-bottom:0.4rem;display:block;">Message *</label>
+                <textarea id="cMessage" class="contact-input" rows="5" placeholder="Tell us what you need..." required style="resize:vertical;"></textarea>
+                <div id="cMessageErr" style="font-size:0.78rem;color:#c24907;margin-top:0.25rem;display:none;">Please enter your message.</div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-hero-primary w-100 justify-content-center" id="submitBtn">
+                  <i class="bi bi-send"></i> Send Message
+                </button>
+                <div id="formSuccess" style="display:none;background:rgba(45,106,79,0.1);border:1px solid rgba(45,106,79,0.3);border-radius:0.75rem;padding:1rem;margin-top:1rem;text-align:center;color:#2d6a4f;font-size:0.9rem;">
+                  ✅ Message sent! We'll get back to you within 24 hours.
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="footer">
+  <div class="container py-5">
+    <div class="row g-5">
+      <!-- Brand -->
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f97f0e,#c24907);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">🫙</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#ffc170;">Jumani Foods</div>
+            <div style="font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:#8e6236;">Taste the Tradition</div>
+          </div>
+        </div>
+        <p style="font-size:0.88rem;color:rgba(240,230,211,0.6);line-height:1.8;max-width:300px;">Handcrafted Pakistani pickles, spices & condiments made with love in Karachi. Delivering authentic tradition to your table since over a decade.</p>
+        <div class="d-flex gap-3 mt-4">
+          <a href="https://www.instagram.com/jumani_food_products" target="_blank" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(240,230,211,0.7);font-size:1rem;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(249,127,14,0.2)';this.style.color='#ffc170'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(240,230,211,0.7)'"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.facebook.com/share/1JGkJh1PUX/" target="_blank" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(240,230,211,0.7);font-size:1rem;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(249,127,14,0.2)';this.style.color='#ffc170'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(240,230,211,0.7)'"><i class="bi bi-facebook"></i></a>
+          <a href="https://wa.me/92300000000" target="_blank" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(240,230,211,0.7);font-size:1rem;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(249,127,14,0.2)';this.style.color='#ffc170'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.color='rgba(240,230,211,0.7)'"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-6 col-lg-2">
+        <h5 style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#ffc170;margin-bottom:1.25rem;">Quick Links</h5>
+        <a href="#about"      class="footer-link">About Us</a>
+        <a href="#products"   class="footer-link">Products</a>
+        <a href="#categories" class="footer-link">Categories</a>
+        <a href="#reviews"    class="footer-link">Reviews</a>
+        <a href="#gallery"    class="footer-link">Gallery</a>
+        <a href="#contact"    class="footer-link">Contact</a>
+      </div>
+
+      <!-- Products -->
+      <div class="col-6 col-lg-3">
+        <h5 style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#ffc170;margin-bottom:1.25rem;">Our Products</h5>
+        <a href="#products" class="footer-link">🥭 Mango Pickle</a>
+        <a href="#products" class="footer-link">🌶️ Chilli Achar</a>
+        <a href="#products" class="footer-link">🫙 Mixed Pickle</a>
+        <a href="#products" class="footer-link">🧄 Garlic Pickle</a>
+        <a href="#products" class="footer-link">🌿 Spice Blends</a>
+        <a href="#products" class="footer-link">🍯 Chutneys</a>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-3">
+        <h5 style="font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#ffc170;margin-bottom:1.25rem;">Contact Info</h5>
+        <div style="font-size:0.88rem;color:rgba(240,230,211,0.6);line-height:2;">
+          <div><i class="bi bi-geo-alt" style="color:#f97f0e;margin-right:0.4rem;"></i> Karachi, Sindh, Pakistan</div>
+          <div><i class="bi bi-whatsapp" style="color:#f97f0e;margin-right:0.4rem;"></i> +92 300 000 0000</div>
+          <div><i class="bi bi-envelope" style="color:#f97f0e;margin-right:0.4rem;"></i> info@jumanifoodproducts.com</div>
+          <div><i class="bi bi-clock" style="color:#f97f0e;margin-right:0.4rem;"></i> Mon–Sat: 9AM – 8PM</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:3rem;padding-top:1.5rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+      <div style="font-size:0.82rem;color:rgba(240,230,211,0.4);">© 2026 Jumani Food Products. All rights reserved. Made with ❤️ in Karachi.</div>
+      <div style="font-size:0.82rem;color:rgba(240,230,211,0.4);">🫙 Taste the Tradition</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     PRODUCT MODAL
+     ============================================================ -->
+<div class="modal fade" id="productModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:1.5rem;border:none;overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#1a0a00,#3d1a08);padding:2.5rem;position:relative;text-align:center;">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" style="position:absolute;top:1rem;right:1rem;"></button>
+        <div id="modalEmoji" style="font-size:6rem;line-height:1;"></div>
+      </div>
+      <div style="padding:2rem;">
+        <h4 id="modalTitle" style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#1a0a00;"></h4>
+        <p id="modalDesc" style="color:#8e6236;margin-top:0.75rem;line-height:1.7;font-size:0.92rem;"></p>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;">
+          <div>
+            <div id="modalPrice" style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#f97f0e;"></div>
+            <div id="modalOldPrice" style="font-size:0.85rem;color:#999;text-decoration:line-through;"></div>
+          </div>
+          <a id="modalOrderBtn" href="#" target="_blank" class="btn-hero-primary"><i class="bi bi-whatsapp"></i> Order Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div class="modal fade lightbox-modal" id="lightboxModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div style="position:relative;">
+        <button type="button" class="btn-close-custom" data-bs-dismiss="modal"><i class="bi bi-x"></i></button>
+        <div id="lightboxContent" style="background:#1a0a00;border-radius:1rem;min-height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;padding:3rem;">
+          <div id="lightboxEmoji" style="font-size:8rem;line-height:1;"></div>
+          <div id="lightboxCaption" style="color:#ffc170;font-family:'Playfair Display',serif;font-size:1.25rem;text-align:center;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+  /* ============================================================
+     LOADING SCREEN
+     ============================================================ */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loading-screen').classList.add('hidden');
+    }, 2000);
+  });
+
+  /* ============================================================
+     STICKY NAVBAR
+     ============================================================ */
+  const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    // Scrolled class
+    if (scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+
+    // Back to top
+    const btt = document.getElementById('back-to-top');
+    if (scrollY > 400) btt.classList.add('show');
+    else btt.classList.remove('show');
+
+    lastScroll = scrollY;
+
+    // Active nav highlighting
+    updateActiveNav();
+  });
+
+  function updateActiveNav() {
+    const sections = ['about','categories','products','bestsellers','reviews','gallery','faq','contact'];
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      const links = document.querySelectorAll(`.nav-link-item[href="#${id}"]`);
+      if (el && el.offsetTop <= scrollPos && el.offsetTop + el.offsetHeight > scrollPos) {
+        links.forEach(l => l.classList.add('active'));
+      } else {
+        links.forEach(l => l.classList.remove('active'));
+      }
+    });
+  }
+
+  /* ============================================================
+     MOBILE MENU
+     ============================================================ */
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn  = document.getElementById('mobile-menu-btn');
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+      btn.innerHTML = '<i class="bi bi-x-lg"></i>';
+    } else {
+      closeMobileMenu();
+    }
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').style.display = 'none';
+    document.getElementById('mobile-menu-btn').innerHTML = '<i class="bi bi-list"></i>';
+  }
+
+  /* ============================================================
+     DARK MODE
+     ============================================================ */
+  function toggleDark() {
+    document.documentElement.classList.toggle('dark');
+    const icon = document.querySelector('#dark-toggle i, #dark-toggle-mobile i');
+    if (document.documentElement.classList.contains('dark')) {
+      document.querySelectorAll('#dark-toggle i, #dark-toggle-mobile i').forEach(i => i.className = 'bi bi-sun-fill');
+      document.body.style.background = '#0f0700';
+      document.body.style.color = '#f0e6d3';
+    } else {
+      document.querySelectorAll('#dark-toggle i, #dark-toggle-mobile i').forEach(i => i.className = 'bi bi-moon-stars-fill');
+      document.body.style.background = '';
+      document.body.style.color = '';
+    }
+  }
+
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  /* ============================================================
+     ANIMATED COUNTERS
+     ============================================================ */
+  function animateCounter(el, target, duration = 2000) {
+    let start = 0;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString() + (target >= 1000 ? '+' : (target === 10 ? '+' : (target === 25 ? '+' : '+')));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nums = entry.target.querySelectorAll('.stat-number[data-target]');
+        nums.forEach(el => {
+          const target = parseInt(el.dataset.target);
+          animateCounter(el, target);
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.getElementById('stats');
+  if (statsSection) statsObserver.observe(statsSection);
+
+  /* ============================================================
+     PRODUCT MODAL
+     ============================================================ */
+  function openProductModal(title, desc, price, oldPrice, emoji) {
+    document.getElementById('modalEmoji').textContent = emoji;
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDesc').textContent = desc;
+    document.getElementById('modalPrice').textContent = price;
+    document.getElementById('modalOldPrice').textContent = oldPrice;
+    document.getElementById('modalOrderBtn').href = 'https://wa.me/92300000000?text=I want to order: ' + title;
+    new bootstrap.Modal(document.getElementById('productModal')).show();
+  }
+
+  /* ============================================================
+     LIGHTBOX
+     ============================================================ */
+  function openLightbox(emoji, caption) {
+    document.getElementById('lightboxEmoji').textContent = emoji;
+    document.getElementById('lightboxCaption').textContent = caption;
+    new bootstrap.Modal(document.getElementById('lightboxModal')).show();
+  }
+
+  /* ============================================================
+     CONTACT FORM VALIDATION
+     ============================================================ */
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    let valid = true;
+
+    const name    = document.getElementById('cName');
+    const phone   = document.getElementById('cPhone');
+    const message = document.getElementById('cMessage');
+
+    // Reset errors
+    ['cNameErr','cPhoneErr','cMessageErr'].forEach(id => document.getElementById(id).style.display = 'none');
+
+    if (!name.value.trim()) {
+      document.getElementById('cNameErr').style.display = 'block';
+      valid = false;
+    }
+    if (!phone.value.trim()) {
+      document.getElementById('cPhoneErr').style.display = 'block';
+      valid = false;
+    }
+    if (!message.value.trim()) {
+      document.getElementById('cMessageErr').style.display = 'block';
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    // Simulate send
+    const btn = document.getElementById('submitBtn');
+    btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Sending...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.innerHTML = '<i class="bi bi-check-circle"></i> Sent!';
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('contactForm').reset();
+      setTimeout(() => {
+        btn.innerHTML = '<i class="bi bi-send"></i> Send Message';
+        btn.disabled = false;
+        document.getElementById('formSuccess').style.display = 'none';
+      }, 5000);
+    }, 1500);
+  }
+
+  /* ============================================================
+     STAGGERED REVEAL DELAYS
+     ============================================================ */
+  // Already handled via inline transition-delay on elements
+
+  /* ============================================================
+     SMOOTH SCROLL for nav links
+     ============================================================ */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
