@@ -2094,95 +2094,96 @@
            style="background:linear-gradient(145deg,#1a0a00 0%,#3d1a08 50%,#6b2f10 100%);
                   border-radius:1.5rem 1.5rem 0 0;overflow:hidden;position:relative;">
 
-        <!-- Decorative glow blobs -->
-        <div style="position:absolute;width:220px;height:220px;border-radius:50%;
-                    background:radial-gradient(circle,rgba(249,127,14,0.18),transparent 70%);
-                    top:-60px;right:-60px;pointer-events:none;"></div>
+        <!-- Subtle glow blobs -->
         <div style="position:absolute;width:160px;height:160px;border-radius:50%;
-                    background:radial-gradient(circle,rgba(255,193,112,0.12),transparent 70%);
-                    bottom:20px;left:-40px;pointer-events:none;"></div>
+                    background:radial-gradient(circle,rgba(249,127,14,0.14),transparent 70%);
+                    top:-40px;right:-40px;pointer-events:none;z-index:0;"></div>
+        <div style="position:absolute;width:110px;height:110px;border-radius:50%;
+                    background:radial-gradient(circle,rgba(255,193,112,0.09),transparent 70%);
+                    bottom:10px;left:-25px;pointer-events:none;z-index:0;"></div>
 
-        <!-- Slide indicators (dots) -->
-        <div class="carousel-indicators" style="margin-bottom:0.5rem;position:relative;z-index:5;">
-          <button type="button" data-bs-target="#sharbatCarousel" data-bs-slide-to="0"
-                  class="active" aria-current="true" aria-label="Image 1"
-                  style="width:8px;height:8px;border-radius:50%;background:#f97f0e;border:none;opacity:1;margin:0 3px;"></button>
-          <button type="button" data-bs-target="#sharbatCarousel" data-bs-slide-to="1"
-                  aria-label="Image 2"
-                  style="width:8px;height:8px;border-radius:50%;background:rgba(249,127,14,0.35);border:none;opacity:1;margin:0 3px;"></button>
-          <button type="button" data-bs-target="#sharbatCarousel" data-bs-slide-to="2"
-                  aria-label="Image 3"
-                  style="width:8px;height:8px;border-radius:50%;background:rgba(249,127,14,0.35);border:none;opacity:1;margin:0 3px;"></button>
-        </div>
-
-        <!-- Slides — images with rounded corners on dark bg -->
-        <div class="carousel-inner" style="padding:1.25rem 1.5rem 0.75rem;position:relative;z-index:2;">
+        <!-- Slides — reduced height & padding -->
+        <div class="carousel-inner" style="padding:0.65rem 0.75rem 0.3rem;position:relative;z-index:2;">
           <div class="carousel-item active">
-            <div style="background:rgba(255,255,255,0.06);border-radius:1rem;overflow:hidden;
-                        box-shadow:0 8px 32px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.08);
-                        border:1px solid rgba(255,255,255,0.08);">
+            <div style="background:rgba(255,255,255,0.06);border-radius:0.75rem;overflow:hidden;
+                        box-shadow:0 6px 20px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.08);
+                        border:1px solid rgba(255,255,255,0.09);">
               <img src="Product1_1.jpg" alt="Sharbat-e-Karna – View 1"
-                   style="width:100%;height:clamp(240px,65vw,380px);object-fit:contain;
-                          object-position:center;padding:1rem;display:block;" />
+                   style="width:100%;height:clamp(185px,50vw,270px);object-fit:contain;
+                          object-position:center;padding:0.5rem;display:block;" />
             </div>
           </div>
           <div class="carousel-item">
-            <div style="background:rgba(255,255,255,0.06);border-radius:1rem;overflow:hidden;
-                        box-shadow:0 8px 32px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.08);
-                        border:1px solid rgba(255,255,255,0.08);">
+            <div style="background:rgba(255,255,255,0.06);border-radius:0.75rem;overflow:hidden;
+                        box-shadow:0 6px 20px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.08);
+                        border:1px solid rgba(255,255,255,0.09);">
               <img src="Product1_2.jpg" alt="Sharbat-e-Karna – View 2"
-                   style="width:100%;height:clamp(240px,65vw,380px);object-fit:contain;
-                          object-position:center;padding:1rem;display:block;" />
+                   style="width:100%;height:clamp(185px,50vw,270px);object-fit:contain;
+                          object-position:center;padding:0.5rem;display:block;" />
             </div>
           </div>
           <div class="carousel-item">
-            <div style="background:rgba(255,255,255,0.06);border-radius:1rem;overflow:hidden;
-                        box-shadow:0 8px 32px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.08);
-                        border:1px solid rgba(255,255,255,0.08);">
+            <div style="background:rgba(255,255,255,0.06);border-radius:0.75rem;overflow:hidden;
+                        box-shadow:0 6px 20px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.08);
+                        border:1px solid rgba(255,255,255,0.09);">
               <img src="Product1_3.jpg" alt="Sharbat-e-Karna – View 3"
-                   style="width:100%;height:clamp(240px,65vw,380px);object-fit:contain;
-                          object-position:center;padding:1rem;display:block;" />
+                   style="width:100%;height:clamp(185px,50vw,270px);object-fit:contain;
+                          object-position:center;padding:0.5rem;display:block;" />
             </div>
           </div>
         </div>
 
-        <!-- Prev / Next arrows -->
+        <!-- Prev / Next arrows — only over image area -->
         <button class="carousel-control-prev" type="button" data-bs-target="#sharbatCarousel" data-bs-slide="prev"
-                style="width:3rem;opacity:1;z-index:6;">
-          <span style="background:rgba(249,127,14,0.25);border:1px solid rgba(249,127,14,0.4);
-                       border-radius:50%;width:36px;height:36px;display:flex;align-items:center;
-                       justify-content:center;backdrop-filter:blur(8px);transition:all 0.2s;"
-                onmouseover="this.style.background='rgba(249,127,14,0.5)'"
-                onmouseout="this.style.background='rgba(249,127,14,0.25)'">
-            <i class="bi bi-chevron-left" style="color:#ffc170;font-size:0.9rem;"></i>
+                style="width:2.5rem;opacity:1;z-index:6;top:0;height:calc(100% - 58px);">
+          <span style="background:rgba(249,127,14,0.22);border:1px solid rgba(249,127,14,0.4);
+                       border-radius:50%;width:30px;height:30px;display:flex;align-items:center;
+                       justify-content:center;backdrop-filter:blur(6px);">
+            <i class="bi bi-chevron-left" style="color:#ffc170;font-size:0.75rem;"></i>
           </span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#sharbatCarousel" data-bs-slide="next"
-                style="width:3rem;opacity:1;z-index:6;">
-          <span style="background:rgba(249,127,14,0.25);border:1px solid rgba(249,127,14,0.4);
-                       border-radius:50%;width:36px;height:36px;display:flex;align-items:center;
-                       justify-content:center;backdrop-filter:blur(8px);transition:all 0.2s;"
-                onmouseover="this.style.background='rgba(249,127,14,0.5)'"
-                onmouseout="this.style.background='rgba(249,127,14,0.25)'">
-            <i class="bi bi-chevron-right" style="color:#ffc170;font-size:0.9rem;"></i>
+                style="width:2.5rem;opacity:1;z-index:6;top:0;height:calc(100% - 58px);">
+          <span style="background:rgba(249,127,14,0.22);border:1px solid rgba(249,127,14,0.4);
+                       border-radius:50%;width:30px;height:30px;display:flex;align-items:center;
+                       justify-content:center;backdrop-filter:blur(6px);">
+            <i class="bi bi-chevron-right" style="color:#ffc170;font-size:0.75rem;"></i>
           </span>
         </button>
 
-        <!-- Thumbnail strip -->
-        <div class="gm-thumb-strip" style="background:transparent;padding:0.6rem 1.5rem 1.1rem;gap:0.6rem;position:relative;z-index:3;">
-          <img src="Product1_1.jpg" alt="thumb 1" id="gmThumb0" onclick="setGallerySlide(0)"
-               style="width:clamp(52px,13vw,68px);height:clamp(52px,13vw,68px);object-fit:cover;
-                      border-radius:0.6rem;cursor:pointer;border:2.5px solid #f97f0e;
-                      opacity:1;transition:all 0.25s;box-shadow:0 3px 10px rgba(249,127,14,0.4);" />
-          <img src="Product1_2.jpg" alt="thumb 2" id="gmThumb1" onclick="setGallerySlide(1)"
-               style="width:clamp(52px,13vw,68px);height:clamp(52px,13vw,68px);object-fit:cover;
-                      border-radius:0.6rem;cursor:pointer;border:2.5px solid rgba(255,255,255,0.15);
-                      opacity:0.55;transition:all 0.25s;" />
-          <img src="Product1_3.jpg" alt="thumb 3" id="gmThumb2" onclick="setGallerySlide(2)"
-               style="width:clamp(52px,13vw,68px);height:clamp(52px,13vw,68px);object-fit:cover;
-                      border-radius:0.6rem;cursor:pointer;border:2.5px solid rgba(255,255,255,0.15);
-                      opacity:0.55;transition:all 0.25s;" />
+        <!-- Bottom bar: thumbnails + dots in ONE compact row -->
+        <div style="display:flex;align-items:center;justify-content:space-between;
+                    padding:0.35rem 0.75rem 0.55rem;position:relative;z-index:3;">
+
+          <!-- Thumbnails (left) -->
+          <div style="display:flex;gap:0.35rem;align-items:center;">
+            <img src="Product1_1.jpg" alt="thumb 1" id="gmThumb0" onclick="setGallerySlide(0)"
+                 style="width:46px;height:46px;object-fit:cover;border-radius:0.4rem;cursor:pointer;
+                        border:2px solid #f97f0e;opacity:1;transition:all 0.2s;
+                        box-shadow:0 2px 7px rgba(249,127,14,0.45);" />
+            <img src="Product1_2.jpg" alt="thumb 2" id="gmThumb1" onclick="setGallerySlide(1)"
+                 style="width:46px;height:46px;object-fit:cover;border-radius:0.4rem;cursor:pointer;
+                        border:2px solid rgba(255,255,255,0.15);opacity:0.5;transition:all 0.2s;" />
+            <img src="Product1_3.jpg" alt="thumb 3" id="gmThumb2" onclick="setGallerySlide(2)"
+                 style="width:46px;height:46px;object-fit:cover;border-radius:0.4rem;cursor:pointer;
+                        border:2px solid rgba(255,255,255,0.15);opacity:0.5;transition:all 0.2s;" />
+          </div>
+
+          <!-- Dots (right) — tiny, inline -->
+          <div style="display:flex;align-items:center;gap:5px;padding-right:0.25rem;">
+            <button id="dot0" type="button" onclick="setGallerySlide(0)"
+                    style="width:7px;height:7px;border-radius:50%;background:#f97f0e;
+                           border:none;padding:0;cursor:pointer;transition:all 0.2s;
+                           box-shadow:0 0 5px rgba(249,127,14,0.7);"></button>
+            <button id="dot1" type="button" onclick="setGallerySlide(1)"
+                    style="width:7px;height:7px;border-radius:50%;background:rgba(249,127,14,0.28);
+                           border:none;padding:0;cursor:pointer;transition:all 0.2s;"></button>
+            <button id="dot2" type="button" onclick="setGallerySlide(2)"
+                    style="width:7px;height:7px;border-radius:50%;background:rgba(249,127,14,0.28);
+                           border:none;padding:0;cursor:pointer;transition:all 0.2s;"></button>
+          </div>
         </div>
+
       </div>
 
       <!-- Product Info -->
@@ -2478,13 +2479,28 @@
   function updateGalleryThumbs(activeIndex) {
     for (let i = 0; i < 3; i++) {
       const thumb = document.getElementById('gmThumb' + i);
-      if (!thumb) continue;
-      if (i === activeIndex) {
-        thumb.style.border = '2px solid #f97f0e';
-        thumb.style.opacity = '1';
-      } else {
-        thumb.style.border = '2px solid transparent';
-        thumb.style.opacity = '0.55';
+      if (thumb) {
+        if (i === activeIndex) {
+          thumb.style.border    = '2px solid #f97f0e';
+          thumb.style.opacity   = '1';
+          thumb.style.boxShadow = '0 2px 7px rgba(249,127,14,0.45)';
+        } else {
+          thumb.style.border    = '2px solid rgba(255,255,255,0.15)';
+          thumb.style.opacity   = '0.5';
+          thumb.style.boxShadow = 'none';
+        }
+      }
+      const dot = document.getElementById('dot' + i);
+      if (dot) {
+        if (i === activeIndex) {
+          dot.style.background = '#f97f0e';
+          dot.style.boxShadow  = '0 0 5px rgba(249,127,14,0.7)';
+          dot.style.transform  = 'scale(1.25)';
+        } else {
+          dot.style.background = 'rgba(249,127,14,0.28)';
+          dot.style.boxShadow  = 'none';
+          dot.style.transform  = 'scale(1)';
+        }
       }
     }
   }
