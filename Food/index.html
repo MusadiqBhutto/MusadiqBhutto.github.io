@@ -1298,10 +1298,17 @@
     <div class="row g-3">
       <!-- Cat cards -->
       <div class="col-6 col-md-4 col-lg-2 reveal" style="transition-delay:0.05s;">
-        <div class="category-card" style="background:#fff;border:1px solid rgba(249,127,14,0.12);">
-          <div class="cat-icon" style="background:rgba(249,127,14,0.1);">🥭</div>
-          <h5 style="font-size:0.9rem;font-weight:600;color:#1a0a00;">Mango Pickle</h5>
-          <p style="font-size:0.75rem;color:#8e6236;margin-top:0.25rem;">6 varieties</p>
+        <div class="category-card" onclick="openSharbatCategoryModal()"
+             style="background:#fff;border:1px solid rgba(249,127,14,0.18);
+                    cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden;"
+             onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(249,127,14,0.18)'"
+             onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+          <!-- Subtle glow bg on hover -->
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(249,127,14,0.04),rgba(255,193,112,0.06));border-radius:inherit;pointer-events:none;"></div>
+          <div class="cat-icon" style="background:linear-gradient(135deg,rgba(249,127,14,0.15),rgba(255,193,112,0.1));position:relative;z-index:1;">🥤</div>
+          <h5 style="font-size:0.9rem;font-weight:700;color:#1a0a00;position:relative;z-index:1;">Sharbat</h5>
+          <p style="font-size:0.72rem;color:#f97f0e;margin-top:0.2rem;font-weight:600;position:relative;z-index:1;">5 varieties</p>
+          <p style="font-size:0.65rem;color:#8e6236;margin-top:0.1rem;position:relative;z-index:1;">Tap to explore ›</p>
         </div>
       </div>
       <div class="col-6 col-md-4 col-lg-2 reveal" style="transition-delay:0.1s;">
@@ -2627,6 +2634,229 @@
   </div>
 </div>
 
+<!-- ============================================================
+     SHARBAT CATEGORY MODAL — 5-product carousel
+     ============================================================ -->
+<div class="modal fade" id="sharbatCategoryModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width:min(700px,96vw);margin:auto;">
+    <div class="modal-content" style="border-radius:1.5rem;border:none;overflow:hidden;
+                                       background:linear-gradient(145deg,#1a0a00 0%,#3d1a08 50%,#6b2f10 100%);">
+
+      <!-- Close button -->
+      <button type="button" data-bs-dismiss="modal"
+        style="position:absolute;top:0.75rem;right:0.75rem;z-index:20;
+               background:rgba(0,0,0,0.5);border:none;border-radius:50%;
+               width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+               color:#fff;font-size:1.1rem;cursor:pointer;backdrop-filter:blur(4px);">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <!-- Header -->
+      <div style="padding:1.1rem 1.5rem 0.5rem;display:flex;align-items:center;gap:0.6rem;position:relative;z-index:2;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f97f0e,#c24907);
+                    display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🥤</div>
+        <div>
+          <h4 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#ffc170;margin:0;">Sharbat Collection</h4>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin:0;letter-spacing:0.1em;text-transform:uppercase;">5 Premium Syrups · 1000 ML Each</p>
+        </div>
+      </div>
+
+      <!-- Product name pill tabs -->
+      <div style="display:flex;gap:0.4rem;padding:0.4rem 1.5rem 0.6rem;overflow-x:auto;-webkit-overflow-scrolling:touch;
+                  scrollbar-width:none;position:relative;z-index:2;flex-wrap:nowrap;">
+        <style>#sharbatCategoryModal ::-webkit-scrollbar{display:none}</style>
+          <button id="sCatThumb0" type="button" onclick="setSharbatSlide(0)"
+                  style="background:linear-gradient(135deg,#f97f0e,#c24907);color:#fff;border:1.5px solid #f97f0e;border-radius:99px;font-size:0.65rem;font-weight:600;
+                         padding:0.3rem 0.7rem;cursor:pointer;white-space:nowrap;
+                         transition:all 0.2s;letter-spacing:0.03em;">Karna</button>
+          <button id="sCatThumb1" type="button" onclick="setSharbatSlide(1)"
+                  style="background:rgba(255,255,255,0.08);color:rgba(240,230,211,0.65);border:1.5px solid rgba(255,255,255,0.15);border-radius:99px;font-size:0.65rem;font-weight:600;
+                         padding:0.3rem 0.7rem;cursor:pointer;white-space:nowrap;
+                         transition:all 0.2s;letter-spacing:0.03em;">Gulab</button>
+          <button id="sCatThumb2" type="button" onclick="setSharbatSlide(2)"
+                  style="background:rgba(255,255,255,0.08);color:rgba(240,230,211,0.65);border:1.5px solid rgba(255,255,255,0.15);border-radius:99px;font-size:0.65rem;font-weight:600;
+                         padding:0.3rem 0.7rem;cursor:pointer;white-space:nowrap;
+                         transition:all 0.2s;letter-spacing:0.03em;">Thadal</button>
+          <button id="sCatThumb3" type="button" onclick="setSharbatSlide(3)"
+                  style="background:rgba(255,255,255,0.08);color:rgba(240,230,211,0.65);border:1.5px solid rgba(255,255,255,0.15);border-radius:99px;font-size:0.65rem;font-weight:600;
+                         padding:0.3rem 0.7rem;cursor:pointer;white-space:nowrap;
+                         transition:all 0.2s;letter-spacing:0.03em;">Elaichi</button>
+          <button id="sCatThumb4" type="button" onclick="setSharbatSlide(4)"
+                  style="background:rgba(255,255,255,0.08);color:rgba(240,230,211,0.65);border:1.5px solid rgba(255,255,255,0.15);border-radius:99px;font-size:0.65rem;font-weight:600;
+                         padding:0.3rem 0.7rem;cursor:pointer;white-space:nowrap;
+                         transition:all 0.2s;letter-spacing:0.03em;">Sandal</button>
+      </div>
+
+      <!-- Glow blobs -->
+      <div style="position:absolute;width:200px;height:200px;border-radius:50%;
+                  background:radial-gradient(circle,rgba(249,127,14,0.12),transparent 70%);
+                  top:-60px;right:-60px;pointer-events:none;z-index:0;"></div>
+      <div style="position:absolute;width:140px;height:140px;border-radius:50%;
+                  background:radial-gradient(circle,rgba(255,193,112,0.08),transparent 70%);
+                  bottom:40px;left:-40px;pointer-events:none;z-index:0;"></div>
+
+      <!-- 5-slide carousel -->
+      <div id="sharbatCatCarousel" class="carousel slide" data-bs-ride="false" data-bs-touch="true"
+           style="position:relative;z-index:2;">
+        <div class="carousel-inner" style="padding:0 1.25rem 1.25rem;">
+          <div class="carousel-item active">
+            <!-- Image -->
+            <div style="background:rgba(255,255,255,0.06);border-radius:0.75rem;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.09);">
+              <img src="Product1_1.png" alt="Sharbat-e-Karna" style="width:100%;height:clamp(200px,52vw,290px);object-fit:contain;object-position:center;padding:0.5rem;display:block;" />
+            </div>
+            <!-- Per-slide product info -->
+            <div style="padding:1rem 0.25rem 0.25rem;">
+              <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.35rem;">
+                <span style="background:linear-gradient(135deg,#f97f0e,#c24907);color:#fff;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.18rem 0.55rem;border-radius:99px;">Floral Syrup</span>
+                <span style="font-size:0.68rem;color:#ffc170;font-weight:600;letter-spacing:0.06em;">شربت کرنا</span>
+              </div>
+              <h5 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Sharbat-e-Karna</h5>
+              <p style="font-size:0.78rem;color:#8e6236;margin-top:0.15rem;"><i class="bi bi-droplet-fill" style="color:#f97f0e;margin-right:0.2rem;font-size:0.65rem;"></i>1000 ML</p>
+              <p style="font-size:0.82rem;color:rgba(240,230,211,0.78);line-height:1.6;margin-top:0.4rem;text-align:justify;">Made from carefully selected Karna flowers, Sharbat-e-Karna offers a unique blend of flavor and freshness. Simply mix with chilled water, ice, or milk for a delightful beverage.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.85rem;flex-wrap:wrap;gap:0.5rem;">
+                <div style="display:flex;align-items:baseline;gap:0.4rem;">
+                  <span style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#f97f0e;">Rs. 370</span>
+                  <span style="font-size:0.78rem;color:#888;text-decoration:line-through;">Rs. 400</span>
+                  <span style="font-size:0.68rem;color:#25d366;font-weight:700;">✓ Save Rs. 30</span>
+                </div>
+                <a href="https://wa.me/92300000000?text=Assalam+o+Alaikum+%F0%9F%8C%BF+Jumani+Foods%21%0A%0AI+would+like+to+order%3A%0A%E2%9C%85+*Sharbat-e-Karna+%281000+ML%29*%0A%F0%9F%92%B0+Price%3A+Rs.+370%0A%0AKindly+confirm+availability+%26+delivery+details.%0AThank+you+%F0%9F%99%8F"
+                   target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;white-space:nowrap;flex-shrink:0;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-weight:600;font-size:0.82rem;padding:0.55rem 1.1rem;border-radius:99px;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.35);">
+                  <i class="bi bi-whatsapp"></i> Order Now
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <!-- Image -->
+            <div style="background:rgba(255,255,255,0.06);border-radius:0.75rem;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.09);">
+              <img src="Product2_1.png" alt="Sharbat-e-Gulab" style="width:100%;height:clamp(200px,52vw,290px);object-fit:contain;object-position:center;padding:0.5rem;display:block;" />
+            </div>
+            <!-- Per-slide product info -->
+            <div style="padding:1rem 0.25rem 0.25rem;">
+              <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.35rem;">
+                <span style="background:linear-gradient(135deg,#f97f0e,#c24907);color:#fff;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.18rem 0.55rem;border-radius:99px;">Rose Syrup</span>
+                <span style="font-size:0.68rem;color:#ffc170;font-weight:600;letter-spacing:0.06em;">شربت گلاب</span>
+              </div>
+              <h5 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Sharbat-e-Gulab</h5>
+              <p style="font-size:0.78rem;color:#8e6236;margin-top:0.15rem;"><i class="bi bi-droplet-fill" style="color:#f97f0e;margin-right:0.2rem;font-size:0.65rem;"></i>1000 ML</p>
+              <p style="font-size:0.82rem;color:rgba(240,230,211,0.78);line-height:1.6;margin-top:0.4rem;text-align:justify;">Made from carefully selected rose petals, Sharbat-e-Gulab offers a rich floral aroma and refreshing taste. Serve chilled with water, milk, or ice for a delightful experience.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.85rem;flex-wrap:wrap;gap:0.5rem;">
+                <div style="display:flex;align-items:baseline;gap:0.4rem;">
+                  <span style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#f97f0e;">Rs. 370</span>
+                  <span style="font-size:0.78rem;color:#888;text-decoration:line-through;">Rs. 400</span>
+                  <span style="font-size:0.68rem;color:#25d366;font-weight:700;">✓ Save Rs. 30</span>
+                </div>
+                <a href="https://wa.me/92300000000?text=Assalam+o+Alaikum+%F0%9F%8C%BF+Jumani+Foods%21%0A%0AI+would+like+to+order%3A%0A%E2%9C%85+*Sharbat-e-Gulab+%281000+ML%29*%0A%F0%9F%92%B0+Price%3A+Rs.+370%0A%0AKindly+confirm+availability+%26+delivery+details.%0AThank+you+%F0%9F%99%8F"
+                   target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;white-space:nowrap;flex-shrink:0;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-weight:600;font-size:0.82rem;padding:0.55rem 1.1rem;border-radius:99px;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.35);">
+                  <i class="bi bi-whatsapp"></i> Order Now
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <!-- Image -->
+            <div style="background:rgba(255,255,255,0.06);border-radius:0.75rem;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.09);">
+              <img src="Product3_1.png" alt="Sharbat-e-Thadal" style="width:100%;height:clamp(200px,52vw,290px);object-fit:contain;object-position:center;padding:0.5rem;display:block;" />
+            </div>
+            <!-- Per-slide product info -->
+            <div style="padding:1rem 0.25rem 0.25rem;">
+              <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.35rem;">
+                <span style="background:linear-gradient(135deg,#f97f0e,#c24907);color:#fff;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.18rem 0.55rem;border-radius:99px;">Traditional Drink</span>
+                <span style="font-size:0.68rem;color:#ffc170;font-weight:600;letter-spacing:0.06em;">تھادل</span>
+              </div>
+              <h5 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Sharbat-e-Thadal</h5>
+              <p style="font-size:0.78rem;color:#8e6236;margin-top:0.15rem;"><i class="bi bi-droplet-fill" style="color:#f97f0e;margin-right:0.2rem;font-size:0.65rem;"></i>1000 ML</p>
+              <p style="font-size:0.82rem;color:rgba(240,230,211,0.78);line-height:1.6;margin-top:0.4rem;text-align:justify;">Prepared from almonds, poppy seeds, sunflower seeds, fennel, and other carefully selected ingredients. Enjoy it chilled for a delicious balance of taste and refreshment.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.85rem;flex-wrap:wrap;gap:0.5rem;">
+                <div style="display:flex;align-items:baseline;gap:0.4rem;">
+                  <span style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#f97f0e;">Rs. 470</span>
+                  <span style="font-size:0.78rem;color:#888;text-decoration:line-through;">Rs. 500</span>
+                  <span style="font-size:0.68rem;color:#25d366;font-weight:700;">✓ Save Rs. 30</span>
+                </div>
+                <a href="https://wa.me/92300000000?text=Assalam+o+Alaikum+%F0%9F%8C%BF+Jumani+Foods%21%0A%0AI+would+like+to+order%3A%0A%E2%9C%85+*Sharbat-e-Thadal+%281000+ML%29*%0A%F0%9F%92%B0+Price%3A+Rs.+470%0A%0AKindly+confirm+availability+%26+delivery+details.%0AThank+you+%F0%9F%99%8F"
+                   target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;white-space:nowrap;flex-shrink:0;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-weight:600;font-size:0.82rem;padding:0.55rem 1.1rem;border-radius:99px;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.35);">
+                  <i class="bi bi-whatsapp"></i> Order Now
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <!-- Image -->
+            <div style="background:rgba(255,255,255,0.06);border-radius:0.75rem;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.09);">
+              <img src="Product4_1.png" alt="Sharbat-e-Elaichi" style="width:100%;height:clamp(200px,52vw,290px);object-fit:contain;object-position:center;padding:0.5rem;display:block;" />
+            </div>
+            <!-- Per-slide product info -->
+            <div style="padding:1rem 0.25rem 0.25rem;">
+              <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.35rem;">
+                <span style="background:linear-gradient(135deg,#f97f0e,#c24907);color:#fff;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.18rem 0.55rem;border-radius:99px;">Cardamom Syrup</span>
+                <span style="font-size:0.68rem;color:#ffc170;font-weight:600;letter-spacing:0.06em;">شربت الائچی</span>
+              </div>
+              <h5 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Sharbat-e-Elaichi</h5>
+              <p style="font-size:0.78rem;color:#8e6236;margin-top:0.15rem;"><i class="bi bi-droplet-fill" style="color:#f97f0e;margin-right:0.2rem;font-size:0.65rem;"></i>1000 ML</p>
+              <p style="font-size:0.82rem;color:rgba(240,230,211,0.78);line-height:1.6;margin-top:0.4rem;text-align:justify;">Made with high-quality cardamom extract, Sharbat-e-Elaichi delivers a naturally fragrant and soothing flavor. Best served chilled with water, milk, or ice.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.85rem;flex-wrap:wrap;gap:0.5rem;">
+                <div style="display:flex;align-items:baseline;gap:0.4rem;">
+                  <span style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#f97f0e;">Rs. 400</span>
+                  <span style="font-size:0.78rem;color:#888;text-decoration:line-through;">Rs. 430</span>
+                  <span style="font-size:0.68rem;color:#25d366;font-weight:700;">✓ Save Rs. 30</span>
+                </div>
+                <a href="https://wa.me/92300000000?text=Assalam+o+Alaikum+%F0%9F%8C%BF+Jumani+Foods%21%0A%0AI+would+like+to+order%3A%0A%E2%9C%85+*Sharbat-e-Elaichi+%281000+ML%29*%0A%F0%9F%92%B0+Price%3A+Rs.+400%0A%0AKindly+confirm+availability+%26+delivery+details.%0AThank+you+%F0%9F%99%8F"
+                   target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;white-space:nowrap;flex-shrink:0;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-weight:600;font-size:0.82rem;padding:0.55rem 1.1rem;border-radius:99px;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.35);">
+                  <i class="bi bi-whatsapp"></i> Order Now
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <!-- Image -->
+            <div style="background:rgba(255,255,255,0.06);border-radius:0.75rem;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.09);">
+              <img src="Product5_1.png" alt="Sharbat-e-Sandal" style="width:100%;height:clamp(200px,52vw,290px);object-fit:contain;object-position:center;padding:0.5rem;display:block;" />
+            </div>
+            <!-- Per-slide product info -->
+            <div style="padding:1rem 0.25rem 0.25rem;">
+              <div style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.35rem;">
+                <span style="background:linear-gradient(135deg,#f97f0e,#c24907);color:#fff;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.18rem 0.55rem;border-radius:99px;">Sandalwood Syrup</span>
+                <span style="font-size:0.68rem;color:#ffc170;font-weight:600;letter-spacing:0.06em;">شربت صندل</span>
+              </div>
+              <h5 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Sharbat-e-Sandal</h5>
+              <p style="font-size:0.78rem;color:#8e6236;margin-top:0.15rem;"><i class="bi bi-droplet-fill" style="color:#f97f0e;margin-right:0.2rem;font-size:0.65rem;"></i>1000 ML</p>
+              <p style="font-size:0.82rem;color:rgba(240,230,211,0.78);line-height:1.6;margin-top:0.4rem;text-align:justify;">Made with the essence of pure sandalwood, Sharbat-e-Sandal offers a distinctive aroma and smooth, refreshing flavor. Serve chilled with water and ice for a fragrant finish.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.85rem;flex-wrap:wrap;gap:0.5rem;">
+                <div style="display:flex;align-items:baseline;gap:0.4rem;">
+                  <span style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#f97f0e;">Rs. 400</span>
+                  <span style="font-size:0.78rem;color:#888;text-decoration:line-through;">Rs. 430</span>
+                  <span style="font-size:0.68rem;color:#25d366;font-weight:700;">✓ Save Rs. 30</span>
+                </div>
+                <a href="https://wa.me/92300000000?text=Assalam+o+Alaikum+%F0%9F%8C%BF+Jumani+Foods%21%0A%0AI+would+like+to+order%3A%0A%E2%9C%85+*Sharbat-e-Sandal+%281000+ML%29*%0A%F0%9F%92%B0+Price%3A+Rs.+400%0A%0AKindly+confirm+availability+%26+delivery+details.%0AThank+you+%F0%9F%99%8F"
+                   target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;white-space:nowrap;flex-shrink:0;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-weight:600;font-size:0.82rem;padding:0.55rem 1.1rem;border-radius:99px;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.35);">
+                  <i class="bi bi-whatsapp"></i> Order Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prev / Next -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#sharbatCatCarousel" data-bs-slide="prev"
+                style="width:2.5rem;opacity:1;z-index:6;top:0;bottom:0;left:0;">
+          <span style="background:rgba(249,127,14,0.25);border:1px solid rgba(249,127,14,0.4);border-radius:50%;
+                       width:32px;height:32px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+            <i class="bi bi-chevron-left" style="color:#ffc170;font-size:0.8rem;"></i>
+          </span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#sharbatCatCarousel" data-bs-slide="next"
+                style="width:2.5rem;opacity:1;z-index:6;top:0;bottom:0;right:0;">
+          <span style="background:rgba(249,127,14,0.25);border:1px solid rgba(249,127,14,0.4);border-radius:50%;
+                       width:32px;height:32px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+            <i class="bi bi-chevron-right" style="color:#ffc170;font-size:0.8rem;"></i>
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- Generic product modal (for all other emoji-based products) -->
 <div class="modal fade" id="productModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
@@ -2941,6 +3171,44 @@
       }
     }
   }
+
+  /* ============================================================
+     SHARBAT CATEGORY MODAL — open, slide, sync pills
+     ============================================================ */
+  function openSharbatCategoryModal() {
+    const c = document.getElementById('sharbatCatCarousel');
+    if (c) bootstrap.Carousel.getOrCreateInstance(c, {ride:false, touch:true}).to(0);
+    updateSharbatPills(0);
+    new bootstrap.Modal(document.getElementById('sharbatCategoryModal')).show();
+  }
+
+  function setSharbatSlide(i) {
+    const c = document.getElementById('sharbatCatCarousel');
+    if (c) bootstrap.Carousel.getOrCreateInstance(c, {ride:false, touch:true}).to(i);
+    updateSharbatPills(i);
+  }
+
+  function updateSharbatPills(active) {
+    for (let i = 0; i < 5; i++) {
+      const pill = document.getElementById('sCatThumb' + i);
+      if (!pill) continue;
+      if (i === active) {
+        pill.style.background = 'linear-gradient(135deg,#f97f0e,#c24907)';
+        pill.style.color      = '#fff';
+        pill.style.border     = '1.5px solid #f97f0e';
+      } else {
+        pill.style.background = 'rgba(255,255,255,0.08)';
+        pill.style.color      = 'rgba(240,230,211,0.65)';
+        pill.style.border     = '1.5px solid rgba(255,255,255,0.15)';
+      }
+    }
+  }
+
+  /* Sync pills when user swipes */
+  document.addEventListener('DOMContentLoaded', () => {
+    const sc = document.getElementById('sharbatCatCarousel');
+    if (sc) sc.addEventListener('slid.bs.carousel', e => updateSharbatPills(e.to));
+  });
 
   /* Sync thumbs on swipe for P4 & P5 */
   document.addEventListener('DOMContentLoaded', () => {
